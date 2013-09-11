@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<!-- Next line "<!DOCTYPE project>" is about disable DTD warning for Ant scripts in Eclipse,
+		if you get some errors, delete it. -->
+<!DOCTYPE project>
+<project name="spring_mvc3" basedir="." default="build">
+	<property environment="env" />
+	<property name="ECLIPSE_HOME" value="M:/Java/eclipse-j2ee-4.6/eclipse" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.6" />
+	<property name="source" value="1.6" />
+	<property file="ant.properties" />
+	<property name="src.dir" value="src" />
+	<property name="war.dir" value="WebRoot" />
+	<property name="build.dir" value="${war.dir}/WEB-INF/classes" />
+	<property name="deploy.path" value="${tomcat.home}/webapps" />
+	<property name="name" value="spring_mvc3" />
+	<path id="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath">
+		<pathelement location="${tomcat.home}/lib/annotations-api.jar" />
+		<pathelement location="${tomcat.home}/lib/catalina-ant.jar" />
+		<pathelement location="${tomcat.home}/lib/catalina-ha.jar" />
+		<pathelement location="${tomcat.home}/lib/catalina-tribes.jar" />
+		<pathelement location="${tomcat.home}/lib/catalina.jar" />
+		<pathelement location="${tomcat.home}/lib/ecj-4.2.2.jar" />
+		<pathelement location="${tomcat.home}/lib/el-api.jar" />
+		<pathelement location="${tomcat.home}/lib/jasper-el.jar" />
+		<pathelement location="${tomcat.home}/lib/jasper.jar" />
+		<pathelement location="${tomcat.home}/lib/jsp-api.jar" />
+		<pathelement location="${tomcat.home}/lib/servlet-api.jar" />
+		<pathelement location="${tomcat.home}/lib/tomcat-api.jar" />
+		<pathelement location="${tomcat.home}/lib/tomcat-coyote.jar" />
+		<pathelement location="${tomcat.home}/lib/tomcat-dbcp.jar" />
+		<pathelement location="${tomcat.home}/lib/tomcat-i18n-es.jar" />
+		<pathelement location="${tomcat.home}/lib/tomcat-i18n-fr.jar" />
+		<pathelement location="${tomcat.home}/lib/tomcat-i18n-ja.jar" />
+		<pathelement location="${tomcat.home}/lib/tomcat-jdbc.jar" />
+		<pathelement location="${tomcat.home}/lib/tomcat-util.jar" />
+	</path>
+	<path id="Web App Libraries.libraryclasspath" />
+	<path id="EAR Libraries.libraryclasspath" />
+	<path id="master-classpath">
+		<fileset dir="${war.dir}/WEB-INF/lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${tomcat.home}/lib">
+			<include name="servlet*.jar" />
+		</fileset>
+		<pathelement location="${build.dir}" />
+		<path refid="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath" />
+		<path refid="Web App Libraries.libraryclasspath" />
+		<path refid="EAR Libraries.libraryclasspath" />
+	</path>
+
+	<target name="init">
+		<mkdir dir="${build.dir}" />
+		<copy includeemptydirs="false" todir="${build.dir}">
+			<fileset dir="${src.dir}">
+				<exclude name="**/*.launch" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+	<target name="cleanall" depends="clean" />
+
+	<target name="build" depends="build-subprojects,build-project" description="Compile main source tree java files">
+		<echo>Building...</echo>
+	</target>
+	<target name="build-subprojects" />
+	<target name="build-project" depends="init">
+		<echo message="${ant.project.name}: ${ant.file}" />
+		<mkdir dir="${build.dir}" />
+		<javac destdir="${build.dir}" debug="true" debuglevel="${debuglevel}" includeantruntime="false" source="${source}" target="${target}">
+			<src path="${src.dir}" />
+			<classpath refid="master-classpath" />
+		</javac>
+	</target>
+
+	<target name="build-refprojects" description="Build all projects which reference this project. Useful to propagate changes." />
+
+	<target name="init-eclipse-compiler" description="Copy Eclipse compiler jars to ant lib directory">
+		<copy todir="${ant.library.dir}">
+			<fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar" />
+		</copy>
+		<unzip dest="${ant.library.dir}">
+			<patternset includes="jdtCompilerAdapter.jar" />
+			<fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar" />
+		</unzip>
+	</target>
+
+	<target name="build-eclipse-compiler" description="Compile project with Eclipse compiler">
+		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter" />
+		<antcall target="build" />
+	</target>
+
+	<target name="war-archiving">
+		<echo>Archiving...</echo>
+		<war destfile="build/${name}.war" webxml="${war.dir}/WEB-INF/web.xml">
+			<fileset dir="${war.dir}">
+				<include name="**/*.*" />
+			</fileset>
+		</war>
+	</target>
+
+	<target name="deploy" depends="build">
+		<echo>Deploying...</echo>
+		<copy todir="${deploy.path}">
+			<fileset dir="build/.">
+				<include name="*.war" />
+			</fileset>
+		</copy>
+	</target>
+
+</project>

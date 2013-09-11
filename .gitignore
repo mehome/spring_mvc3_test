@@ -1,6 +1,50 @@
-*.class
-
 # Package Files #
-*.jar
 *.war
 *.ear
+
+# Zip Package Files #
+*.zip
+*.rar
+
+# Java Files #
+*.class
+*.java.hsp
+*.sonarj
+*.sw*
+.DS_Store
+.springBeans
+integration-repo
+ivy-cache
+jxl.log
+jmx.log
+derby.log
+spring-test/test-output/
+.gradle
+argfile*
+pom.xml
+
+# Java Lib Folder #
+/lib
+/spring_mvc3/lib
+
+# Java Build Files #
+bin
+/build
+/spring_mvc3/build
+buildSrc/build
+/spring-*/build
+target/
+build.bat
+build.sh
+
+# Eclipse artifacts, including WTP generated manifests
+.settings
+spring-*/src/main/java/META-INF/MANIFEST.MF
+
+# IDEA artifacts and output dirs
+*.iml
+*.ipr
+*.iws
+out
+test-output
+atlassian-ide-plugin.xml
