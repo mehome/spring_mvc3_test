@@ -5,14 +5,15 @@
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. -->
 <!-- Next line "<!DOCTYPE project>" is about disable DTD warning for Ant scripts in Eclipse,
-		if you get some errors, delete it. -->
+		if you get some errors, delete it. 
+		See: http://stackoverflow.com/questions/363768/disable-dtd-warning-for-ant-scripts-in-eclipse -->
 <!DOCTYPE project>
 <project name="spring_mvc3" basedir="." default="build">
 	<property environment="env" />
 	<property name="ECLIPSE_HOME" value="M:/Java/eclipse-j2ee-4.6/eclipse" />
 	<property name="debuglevel" value="source,lines,vars" />
-	<property name="target" value="1.6" />
-	<property name="source" value="1.6" />
+	<property name="target" value="1.7" />
+	<property name="source" value="1.7" />
 	<property file="ant.properties" />
 	<property name="src.dir" value="src" />
 	<property name="war.dir" value="WebRoot" />

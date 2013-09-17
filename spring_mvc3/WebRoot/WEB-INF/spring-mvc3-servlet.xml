@@ -12,8 +12,8 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 
 	<mvc:annotation-driven />
 	<context:annotation-config />
-	<context:component-scan base-package="org.i77soft.spring.mvc3.controller" />
-	<context:component-scan base-package="org.i77soft.spring.mvc3.service" />
+	<context:component-scan base-package="net.i77soft.spring.mvc3.controller" />
+	<context:component-scan base-package="net.i77soft.spring.mvc3.service" />
 
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />

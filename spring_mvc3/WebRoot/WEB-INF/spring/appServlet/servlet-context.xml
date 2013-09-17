@@ -9,6 +9,6 @@
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
 	<!-- 测试Service -->
-	<bean id="springTestService2" class="org.i77soft.spring.mvc3.service.SpringTestService2"></bean>
+	<bean id="springTestService2" class="net.i77soft.spring.mvc3.service.SpringTestService2"></bean>
 
 </beans>

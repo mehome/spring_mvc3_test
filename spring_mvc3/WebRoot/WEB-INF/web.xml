@@ -23,16 +23,6 @@
 	</filter-mapping>
 
 	<!-- Handles all requests into the application -->
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-
-	<!-- <param-value>classpath:config/applicationContext.xml</param-value> -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/config/applicationContext.xml</param-value>
-	</context-param>
-
 	<display-name>spring-mvc3</display-name>
 	<servlet>
 		<servlet-name>spring-mvc3</servlet-name>
@@ -41,7 +31,7 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				/WEB-INF/spring/appServlet/servlet-context.xml
+				/WEB-INF/spring/appServlet/spring-mvc3-servlet.xml
 			</param-value>
 		</init-param>
 		-->
@@ -56,6 +46,16 @@
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- <param-value>classpath:config/applicationContext.xml</param-value> -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/config/applicationContext.xml</param-value>
+	</context-param>
 
     <jsp-config>
         <taglib>
