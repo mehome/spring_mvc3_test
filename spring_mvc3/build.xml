@@ -5,21 +5,22 @@
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. -->
 <!-- Next line "<!DOCTYPE project>" is about disable DTD warning for Ant scripts in Eclipse,
-		if you get some errors, delete it. 
+		if you get some another errors or warnings in Eclipse, delete it please. 
 		See: http://stackoverflow.com/questions/363768/disable-dtd-warning-for-ant-scripts-in-eclipse -->
 <!DOCTYPE project>
 <project name="spring_mvc3" basedir="." default="build">
 	<property environment="env" />
-	<property name="ECLIPSE_HOME" value="M:/Java/eclipse-j2ee-4.6/eclipse" />
+	<property file="build.properties" />
+	<property name="ECLIPSE_HOME" value="${sys.eclipse.home}" />
 	<property name="debuglevel" value="source,lines,vars" />
 	<property name="target" value="1.7" />
 	<property name="source" value="1.7" />
-	<property file="ant.properties" />
 	<property name="src.dir" value="src" />
 	<property name="war.dir" value="WebRoot" />
 	<property name="build.dir" value="${war.dir}/WEB-INF/classes" />
+	<property name="war.build.dir" value="build" />
 	<property name="deploy.path" value="${tomcat.home}/webapps" />
-	<property name="name" value="spring_mvc3" />
+	<property name="name" value="${my.project.name}" />
 	<path id="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath">
 		<pathelement location="${tomcat.home}/lib/annotations-api.jar" />
 		<pathelement location="${tomcat.home}/lib/catalina-ant.jar" />
@@ -101,19 +102,19 @@
 		<antcall target="build" />
 	</target>
 
-	<target name="war-archiving">
+	<target name="war-archiving" depends="build">
 		<echo>Archiving...</echo>
-		<war destfile="build/${name}.war" webxml="${war.dir}/WEB-INF/web.xml">
+		<war destfile="${war.build.dir}/${name}.war" webxml="${war.dir}/WEB-INF/web.xml">
 			<fileset dir="${war.dir}">
 				<include name="**/*.*" />
 			</fileset>
 		</war>
 	</target>
 
-	<target name="deploy" depends="build">
+	<target name="deploy" depends="war-archiving">
 		<echo>Deploying...</echo>
 		<copy todir="${deploy.path}">
-			<fileset dir="build/.">
+			<fileset dir="${war.build.dir}/.">
 				<include name="*.war" />
 			</fileset>
 		</copy>
