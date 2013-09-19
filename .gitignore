@@ -24,18 +24,19 @@ argfile*
 pom.xml
 
 # Java Lib Folder #
-/lib
-/spring_mvc3/lib
+#/lib
+#/spring_mvc3/lib
 
 # Java Build Files #
 bin
-/build
-/spring_mvc3/build
 buildSrc/build
 /spring-*/build
 target/
 build.bat
 build.sh
+
+#/build
+#/spring_mvc3/build
 
 # Eclipse artifacts, including WTP generated manifests
 .settings

@@ -1,1 +1,4 @@
-/lib
+!/build/README
+!/lib/README.txt
+!/lib/README
+/lib/*.jar
