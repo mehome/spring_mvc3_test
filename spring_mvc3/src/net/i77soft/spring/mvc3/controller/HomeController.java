@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+//@RequestMapping(value = "/")
 public class HomeController {
 
 	@RequestMapping("/index.html")
@@ -64,6 +65,7 @@ public class HomeController {
 	@ResponseBody
 	public Client getClient(@PathVariable String name, String title){
 		System.out.println("ajax /client/" + name);
+
 		Client client = new Client();
 		client.setName(title + " " + name);
 
