@@ -67,7 +67,7 @@ public class HomeController {
 		System.out.println("ajax /client/" + name);
 
 		Client client = new Client();
-		client.setName(title + " " + name);
+		client.setName(title + " : " + name);
 
 		return client;
 	}
@@ -80,7 +80,7 @@ public class HomeController {
 		System.out.println("ajax /ajax1 request--");
 
 		Client client = new Client();
-		client.setName("ajax1 test: title = " + title);
+		client.setName("ajax1 test: title = \"" + title + "\"");
 
 		return client;
 	}

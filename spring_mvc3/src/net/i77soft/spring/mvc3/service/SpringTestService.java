@@ -1,14 +1,39 @@
 package net.i77soft.spring.mvc3.service;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.i77soft.dbutils.DBManager;
 import net.i77soft.spring.mvc3.model.Person;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SpringTestService {
+
+	private final static Log log = LogFactory.getLog(SpringTestService.class);
+
+	public SpringTestService() {
+
+	}
+
+	public void openDB() throws SQLException {
+		try {
+			Connection conn = DBManager.getConnection();
+		}
+		catch (SQLException e) {
+			log.error("Unabled to open connection!!! ", e);
+		}
+	}
+
+	public void destroy() {
+		DBManager.closeConnection();
+	}
+
 	/**
 	 * This method supposed to be returning a Collection of Person objects from a DAO layer
 	 * For this tutorial, let us just hard-code this List of Person objects

@@ -3,6 +3,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 
+	<!-- 设置字符编码过滤器读取input request时使用utf-8编码 -->
 	<!-- Reads request input using UTF-8 encoding -->
 	<filter>
 		<filter-name>characterEncodingFilter</filter-name>
@@ -17,32 +18,40 @@
 		</init-param>
 	</filter>
 
+	<!-- 字符编码过滤器过滤所有除了静态/assets/*文件夹以外的文件 -->
 	<filter-mapping>
 		<filter-name>characterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
 	<!-- Handles all requests into the application -->
+	
+	<!-- 设置servlet的显示名称和名称 -->
 	<display-name>spring-mvc3</display-name>
+	<!-- servlet的applicationContext配置文件名, 如果不设置的话, 默认值是: /WEB-INF/applicationContext.xml -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<!-- param-value也可以设置为 classpath:spring/config/servlet-context.xml -->
+		<param-value>/WEB-INF/spring/config/servlet-context.xml</param-value>
+	</context-param>
 	<servlet>
 		<servlet-name>spring-mvc3</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<!--
+		<!-- Spring MVC3的DispatcherServlet配置文件名, 不设置的话, 默认值是: /WEB-INF/applicationContext.xml -->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>
-				/WEB-INF/spring/appServlet/spring-mvc3-servlet.xml
-			</param-value>
+			<param-value>/WEB-INF/spring/config/dispatcher-servlet.xml</param-value>
 		</init-param>
-		-->
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
+	<!-- 设置servlet的起始路径 -->
 	<servlet-mapping>
 		<servlet-name>spring-mvc3</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+	<!-- 设置servlet的首页文件 -->
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
@@ -51,11 +60,10 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<!-- <param-value>classpath:config/applicationContext.xml</param-value> -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/config/applicationContext.xml</param-value>
-	</context-param>
+	<!-- 设置servlet的contextConfigLocation设置, 也可以在前面的servlet里设置 -->
+	<!-- 如果在这里设置, 那么servlet的配置文件是[servlet-name] + "-servlet.xml" -->
+	<!-- 例如: [servlet-name]是"spring-mvc3", 则servlet的配置文件为: /WEB-INF/spring-mvc3-servlet.xml -->
+	<!-- 所以建议在这里设置, servlet的配置文件名可以定制 -->
 
     <jsp-config>
         <taglib>

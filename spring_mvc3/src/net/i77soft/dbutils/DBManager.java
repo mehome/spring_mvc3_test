@@ -19,6 +19,7 @@ public class DBManager {
 
 	private final static Log log = LogFactory.getLog(DBManager.class);
 	private final static ThreadLocal<Connection> conns = new ThreadLocal<Connection>();
+	private final static Properties s_dbProperties = null;
 	private static DataSource dataSource;
 	private static boolean show_sql = false;
 
@@ -35,8 +36,13 @@ public class DBManager {
 	private final static void initDataSource(Properties dbProperties) {
 		try {
 			if (dbProperties == null) {
-				dbProperties = new Properties();
-				dbProperties.load(DBManager.class.getResourceAsStream("db.properties"));
+				if (s_dbProperties == null) {
+					dbProperties = new Properties();
+					dbProperties.load(DBManager.class.getResourceAsStream("db.properties"));
+					s_dbProperties = dbProperties;
+				}
+				else
+					dbProperties = s_dbProperties;
 			}
 			Properties cp_props = new Properties();
 			for (Object key : dbProperties.keySet()) {
@@ -82,6 +88,11 @@ public class DBManager {
 		}
 	}
 
+	/**
+	 * 获取连接
+	 * @return
+	 * @throws SQLException
+	 */
 	public final static Connection getConnection() throws SQLException {
 		Connection conn = conns.get();
 		if (conn == null || conn.isClosed()) {
@@ -125,7 +136,7 @@ public class DBManager {
 
 		/**
 		 * Returns the conn.
-		 * 
+		 *
 		 * @return Connection
 		 */
 		public Connection getConnection() {
