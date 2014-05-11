@@ -20,6 +20,9 @@
 	<context:annotation-config />
 	<context:component-scan base-package="net.i77soft.spring.mvc3.controller" />
 	<context:component-scan base-package="net.i77soft.spring.mvc3.service" />
+	<!--
+	<context:component-scan base-package="net.i77soft.spring.mvc3.interceptor" />
+	-->
 
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
@@ -29,6 +32,36 @@
 	<mvc:resources mapping="/styles/**" location="/assets/css/" />
 	<mvc:resources mapping="/images/**" location="/assets/images/" />
 	<mvc:default-servlet-handler />
+
+	<!-- 拦截器设置 -->
+	<mvc:interceptors>
+		<!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->
+		<bean class="net.i77soft.spring.mvc3.interceptor.DBManagerHandlerInterceptor" />
+		<mvc:interceptor>
+			<!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
+			<mvc:mapping path="/ajax1" />
+			<bean class="net.i77soft.spring.mvc3.interceptor.AjaxHandlerInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的, 可以定义多个特定的拦截器 -->
+			<mvc:mapping path="/ajax1/*" />
+			<bean class="net.i77soft.spring.mvc3.interceptor.AjaxHandlerInterceptor" />				
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<!--
+	<bean id="dbManagerHandlerInterceptor" class="net.i77soft.spring.mvc3.interceptor.DBManagerHandlerInterceptor" />
+	<bean id="ajaxHandlerInterceptor" class="net.i77soft.spring.mvc3.interceptor.AjaxHandlerInterceptor" />
+	
+	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<ref bean="dbManagerHandlerInterceptor"/>
+				<ref bean="ajaxHandlerInterceptor"/>
+			</list>
+		</property>
+	</bean>
+ 	-->
 
 	<!-- 设置views视图采取的解释引擎, 以及views的起始路径, 后缀名 -->
 	<bean id="viewResolver"

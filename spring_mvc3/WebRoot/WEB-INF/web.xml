@@ -60,11 +60,6 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<!-- 设置servlet的contextConfigLocation设置, 也可以在前面的servlet里设置 -->
-	<!-- 如果在这里设置, 那么servlet的配置文件是[servlet-name] + "-servlet.xml" -->
-	<!-- 例如: [servlet-name]是"spring-mvc3", 则servlet的配置文件为: /WEB-INF/spring-mvc3-servlet.xml -->
-	<!-- 所以建议在这里设置, servlet的配置文件名可以定制 -->
-
     <jsp-config>
         <taglib>
             <taglib-uri>/spring</taglib-uri>

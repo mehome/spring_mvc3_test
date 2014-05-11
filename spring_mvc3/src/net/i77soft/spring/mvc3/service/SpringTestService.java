@@ -16,9 +16,12 @@ import org.springframework.stereotype.Service;
 public class SpringTestService {
 
 	private final static Log log = LogFactory.getLog(SpringTestService.class);
+	//private static DBManager dbManager = null;
+	//private static DBManager dbManager = new DBManager();
 
 	public SpringTestService() {
-
+		//DBManager dbManager = new DBManager();
+		//DBManager.initDataSource2(this, null);
 	}
 
 	public void openDB() throws SQLException {
