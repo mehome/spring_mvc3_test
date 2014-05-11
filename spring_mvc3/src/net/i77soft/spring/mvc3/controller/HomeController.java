@@ -3,6 +3,10 @@ package net.i77soft.spring.mvc3.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import net.i77soft.dbutils.DBManager;
 import net.i77soft.spring.mvc3.model.Client;
 
 import org.springframework.http.HttpStatus;
@@ -15,11 +19,36 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping(value = "/")
 public class HomeController {
 
-	@RequestMapping("/index.html")
-	public ModelAndView index_html()
+	private static boolean DBManager_Inited = false;
+
+	@RequestMapping("/")
+	public ModelAndView index_home(HttpServletRequest request, HttpSession session)
 	{
+		if (!DBManager_Inited) {
+			DBManager dbManager = new DBManager();
+			dbManager.initDataSource2(session, null);
+		}
+
+		ModelAndView mv = new ModelAndView("index");
+		mv.addObject("hello", "Hello");    // model中增加一个名为hello的字符串
+
+		Client client = new Client();
+		client.setName("User");
+		mv.addObject("client", client);    // 再增加一个名为client的自定义对象
+		return mv;
+	}
+
+	@RequestMapping("/index.html")
+	public ModelAndView index_html(HttpServletRequest request, HttpSession session)
+	{
+		if (!DBManager_Inited) {
+			DBManager dbManager = new DBManager();
+			dbManager.initDataSource2(session, null);
+		}
+
 		ModelAndView mv = new ModelAndView("index");
 		mv.addObject("hello", "Hello");    // model中增加一个名为hello的字符串
 
@@ -30,8 +59,13 @@ public class HomeController {
 	}
 
 	@RequestMapping("/index.jsp")
-	public ModelAndView index_jsp()
+	public ModelAndView index_jsp(HttpServletRequest request, HttpSession session)
 	{
+		if (!DBManager_Inited) {
+			DBManager dbManager = new DBManager();
+			dbManager.initDataSource2(session, null);
+		}
+
 		ModelAndView mv = new ModelAndView("index");
 		mv.addObject("hello", "Hello");    // model中增加一个名为hello的字符串
 
@@ -64,8 +98,9 @@ public class HomeController {
 	@ResponseBody
 	public Client getClient(@PathVariable String name, String title){
 		System.out.println("ajax /client/" + name);
+
 		Client client = new Client();
-		client.setName(title + " " + name);
+		client.setName(title + " : " + name);
 
 		return client;
 	}
@@ -78,7 +113,20 @@ public class HomeController {
 		System.out.println("ajax /ajax1 request--");
 
 		Client client = new Client();
-		client.setName("ajax1 test: title = " + title);
+		client.setName("ajax1 test: title = \"" + title + "\"");
+
+		return client;
+	}
+
+	@RequestMapping(value="/ajax1/*", method = RequestMethod.GET, headers = "Accept=application/json")
+	//@RequestMapping(value="/ajax1", method = RequestMethod.GET, headers = "Accept=*/*")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public Client getAjax1_(String title) {
+		System.out.println("ajax /ajax1 request--");
+
+		Client client = new Client();
+		client.setName("ajax1 test: title = \"" + title + "\"");
 
 		return client;
 	}

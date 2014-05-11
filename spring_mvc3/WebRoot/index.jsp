@@ -6,16 +6,16 @@
 <title>www.spring.com - WebRoot/index.jsp</title>
 <script type="text/javascript" src="assets/scripts/jquery-1.10.2.min.js"></script>
 <script>
-alert("jquery 1.10.2 enter()!");
+//alert("jquery 1.10.2 enter()!");
 $(function(){
     $("#btnGet").click(function(){
         $.ajax({
             type: 'GET',
             url : 'client/Tian',   		// 通过url传递name参数
             dataType : 'json',
-            data: {title: "Mr"},   		// 通过data传递title参数
+            data: {title: "Mr Test 0"},	// 通过data传递title参数
             success : function(data) {
-            	alert("ajax success!");
+            	alert("ajax test 0 success!");
                 alert(data.name);
             },
             error : function(data) {
@@ -32,9 +32,9 @@ $(function(){
             type: 'GET',
             url : 'ajax1',   			// 通过url传递name参数
             dataType : 'json',
-            data: {title: "Mr"},   		// 通过data传递title参数
+            data: {title: "Mr Test 1"},	// 通过data传递title参数
             success : function(data) {
-            	alert("ajax success!");
+            	alert("ajax test 1 success!");
                 alert(data.name);
             },
             error : function(data) {
@@ -51,10 +51,11 @@ $(function(){
             type: 'GET',
             url : 'ajax2/test',   		// 通过url传递name参数
             dataType : 'json',
-            data: {title: "Mr"},   		// 通过data传递title参数
+            data: {title: "Mr Test 2"},	// 通过data传递title参数
             success : function(data) {
-            	alert("ajax success!");
-                alert(data.name);
+            	alert("ajax test 2 success!");
+            	for (var i = 0; i < data.length; i++)
+                	alert(data[i].name);
             },
             error : function(data) {
             	alert("ajax error!");
@@ -63,7 +64,7 @@ $(function(){
         });
     });
 });
-alert("jquery 1.10.2 over()!");
+//alert("jquery 1.10.2 over()!");
 </script>
 </head>
 <body>

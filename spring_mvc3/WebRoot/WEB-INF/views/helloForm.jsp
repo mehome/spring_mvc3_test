@@ -6,7 +6,7 @@
 <title>www.spring.com - WebRoot/WEB-INF/views/helloForm.jsp</title>
 <script type="text/javascript" src="assets/scripts/jquery-1.10.2.min.js"></script>
 <script>
-alert("jquery 1.10.2 enter()!");
+//alert("jquery 1.10.2 enter()!");
 $(function(){
     $("#btnGet").click(function(){
         $.ajax({
@@ -25,7 +25,7 @@ $(function(){
         });
     });
 });
-alert("jquery 1.10.2 over()!");
+//alert("jquery 1.10.2 over()!");
 </script>
 </head>
 <body>
