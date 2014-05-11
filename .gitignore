@@ -37,8 +37,8 @@ build.bat
 build.sh
 
 # Java DataBase property file
-db.properties
-db_.properties
+*/db.properties
+*/db_.properties
 
 # WebRoot class path
 */WebRoot/WEB-INF/classes/*
