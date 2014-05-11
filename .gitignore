@@ -37,9 +37,10 @@ build.bat
 build.sh
 
 # Java DataBase property file
+/spring_mvc3/WebRoot/WEB-INF/*.properties
+*.properties
 */db.properties
 */db_.properties
-*.properties
 
 # WebRoot class path
 */WebRoot/WEB-INF/classes/*
@@ -58,3 +59,4 @@ spring-*/src/main/java/META-INF/MANIFEST.MF
 out
 test-output
 atlassian-ide-plugin.xml
+
