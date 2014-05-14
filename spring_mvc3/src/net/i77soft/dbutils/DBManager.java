@@ -21,7 +21,7 @@ public class DBManager {
 	private final static Log log = LogFactory.getLog(DBManager.class);
 	private final static ThreadLocal<Connection> conns = new ThreadLocal<Connection>();
 	private static Properties s_dbProperties = null;
-	private static DataSource dataSource;
+	private static DataSource dataSource = null;
 	private static boolean show_sql = false;
 
 	static {
@@ -35,48 +35,7 @@ public class DBManager {
 	 * @param show_sql
 	 */
 	private final static void initDataSource(Properties dbProperties) {
-		try {
-			if (dbProperties == null) {
-				if (s_dbProperties == null) {
-					dbProperties = new Properties();
-					dbProperties.load(DBManager.class.getResourceAsStream("db.properties"));
-					//dbProperties.load(DBManager.class.getResourceAsStream("WEB-INF/db.properties"));
-					//dbProperties.load(DBManager.class.getClass().getClassLoader().getResourceAsStream("WEB-INF/db.properties"));
-					s_dbProperties = dbProperties;
-				}
-				else
-					dbProperties = s_dbProperties;
-			}
-			Properties cp_props = new Properties();
-			for (Object key : dbProperties.keySet()) {
-				String skey = (String) key;
-				if (skey.startsWith("jdbc.")) {
-					String name = skey.substring(5);
-					cp_props.put(name, dbProperties.getProperty(skey));
-					if ("show_sql".equalsIgnoreCase(name)) {
-						show_sql = "true".equalsIgnoreCase(dbProperties.getProperty(skey));
-					}
-				}
-			}
-			dataSource = (DataSource) Class.forName(
-					cp_props.getProperty("datasource")).newInstance();
-			if (dataSource.getClass().getName().indexOf("c3p0") > 0) {
-				// Disable JMX in C3P0
-				System.setProperty(
-						"com.mchange.v2.c3p0.management.ManagementCoordinator",
-						"com.mchange.v2.c3p0.management.NullManagementCoordinator");
-			}
-			log.info("Using DataSource : " + dataSource.getClass().getName());
-			BeanUtils.populate(dataSource, cp_props);
-
-			Connection conn = getConnection();
-			DatabaseMetaData mdm = conn.getMetaData();
-			log.info("Connected to " + mdm.getDatabaseProductName() + " "
-					+ mdm.getDatabaseProductVersion());
-			closeConnection();
-		} catch (Exception e) {
-			throw new DBException(e);
-		}
+		initDataSource(null, dbProperties);
 	}
 
 	/**
@@ -85,7 +44,7 @@ public class DBManager {
 	 * @param props
 	 * @param show_sql
 	 */
-	public void initDataSource(ServletContext servletContext, Properties dbProperties) {
+	public final static void initDataSource(ServletContext servletContext, Properties dbProperties) {
 		try {
 			if (dbProperties == null) {
 				if (s_dbProperties == null) {
@@ -95,7 +54,10 @@ public class DBManager {
 					//dbProperties.load(DBManager.class.getClass().getClassLoader().getResourceAsStream("WEB-INF/db.properties"));
 					//dbProperties.load(servlet.getServletConfig().getServletContext().getResourceAsStream("/WEB-INF/db.properties"));
 					//dbProperties.load(httpSession.getServletContext().getResourceAsStream("/WEB-INF/db.properties"));
-					dbProperties.load(servletContext.getResourceAsStream("/WEB-INF/db.properties"));
+					if (servletContext != null)
+						dbProperties.load(servletContext.getResourceAsStream("/WEB-INF/db.properties"));
+					else
+						dbProperties.load(DBManager.class.getResourceAsStream("/db.properties"));
 					s_dbProperties = dbProperties;
 				}
 				else
@@ -142,6 +104,9 @@ public class DBManager {
 		} catch (NoSuchMethodException e) {
 		} catch (Exception e) {
 			log.error("Unabled to destroy DataSource!!! ", e);
+		}
+		finally {
+			dataSource = null;
 		}
 	}
 

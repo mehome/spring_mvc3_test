@@ -27,8 +27,7 @@ public class DBManagerHandlerInterceptor extends HandlerInterceptorAdapter {
 			Object handler) throws Exception {
 		System.out.println("========= DBManagerHandlerInterceptor preHandle =========");
 		if (!DBManager_Inited) {
-			DBManager dbManager = new DBManager();
-			dbManager.initDataSource(request.getServletContext(), null);
+			DBManager.initDataSource(request.getServletContext(), null);
 			DBManager_Inited = true;
 		}
 		Connection conn = DBManager.getConnection();
