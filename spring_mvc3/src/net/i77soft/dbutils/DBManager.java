@@ -1,5 +1,6 @@
 package net.i77soft.dbutils;
 
+import java.io.InputStream;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -34,6 +35,7 @@ public class DBManager {
 	 * @param props
 	 * @param show_sql
 	 */
+	@SuppressWarnings("unused")
 	private final static void initDataSource(Properties dbProperties) {
 		initDataSource(null, dbProperties);
 	}
@@ -49,16 +51,20 @@ public class DBManager {
 			if (dbProperties == null) {
 				if (s_dbProperties == null) {
 					dbProperties = new Properties();
-					//dbProperties.load(DBManager.class.getResourceAsStream("db.properties"));
-					//dbProperties.load(DBManager.class.getResourceAsStream("WEB-INF/db.properties"));
-					//dbProperties.load(DBManager.class.getClass().getClassLoader().getResourceAsStream("WEB-INF/db.properties"));
-					//dbProperties.load(servlet.getServletConfig().getServletContext().getResourceAsStream("/WEB-INF/db.properties"));
-					//dbProperties.load(httpSession.getServletContext().getResourceAsStream("/WEB-INF/db.properties"));
-					if (servletContext != null)
-						dbProperties.load(servletContext.getResourceAsStream("/WEB-INF/db.properties"));
-					else
-						dbProperties.load(DBManager.class.getResourceAsStream("/db.properties"));
-					s_dbProperties = dbProperties;
+					if (dbProperties != null) {
+						InputStream dbInputStream = null;
+						//dbProperties.load(DBManager.class.getResourceAsStream("db.properties"));
+						//dbProperties.load(DBManager.class.getClass().getClassLoader().getResourceAsStream("WEB-INF/db.properties"));
+						//dbProperties.load(servlet.getServletConfig().getServletContext().getResourceAsStream("/WEB-INF/db.properties"));
+						//dbProperties.load(httpSession.getServletContext().getResourceAsStream("/WEB-INF/db.properties"));
+						if (servletContext != null)
+							dbInputStream = servletContext.getResourceAsStream("/WEB-INF/db.properties");
+						if (dbInputStream == null)
+							dbInputStream = DBManager.class.getResourceAsStream("/db.properties");
+						if (dbInputStream != null)
+							dbProperties.load(dbInputStream);
+						s_dbProperties = dbProperties;
+					}
 				}
 				else
 					dbProperties = s_dbProperties;

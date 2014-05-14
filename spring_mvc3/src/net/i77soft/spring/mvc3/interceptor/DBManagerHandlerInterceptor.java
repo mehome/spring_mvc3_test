@@ -25,11 +25,13 @@ public class DBManagerHandlerInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response,
 			Object handler) throws Exception {
+		System.out.println(".");
 		System.out.println("========= DBManagerHandlerInterceptor preHandle =========");
 		if (!DBManager_Inited) {
 			DBManager.initDataSource(request.getServletContext(), null);
 			DBManager_Inited = true;
 		}
+		@SuppressWarnings("unused")
 		Connection conn = DBManager.getConnection();
 		return true;
 	}
@@ -47,7 +49,8 @@ public class DBManagerHandlerInterceptor extends HandlerInterceptorAdapter {
 			HttpServletResponse response,
 			Object handler,
 			Exception ex) throws Exception {
-		System.out.println("========= DBManagerHandlerInterceptor afterCompletion =========");
 		DBManager.closeConnection();
+		System.out.println("========= DBManagerHandlerInterceptor afterCompletion =========");
+		System.out.println(".");
 	}
 }
