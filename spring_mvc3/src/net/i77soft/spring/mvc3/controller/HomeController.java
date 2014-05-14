@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import net.i77soft.dbutils.DBManager;
 import net.i77soft.spring.mvc3.model.Client;
 
 import org.springframework.http.HttpStatus;
@@ -22,16 +21,9 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/")
 public class HomeController {
 
-	private static boolean DBManager_Inited = false;
-
 	@RequestMapping("/")
 	public ModelAndView index_home(HttpServletRequest request, HttpSession session)
 	{
-		if (!DBManager_Inited) {
-			DBManager dbManager = new DBManager();
-			dbManager.initDataSource2(session, null);
-		}
-
 		ModelAndView mv = new ModelAndView("index");
 		mv.addObject("hello", "Hello");    // model中增加一个名为hello的字符串
 
@@ -44,11 +36,6 @@ public class HomeController {
 	@RequestMapping("/index.html")
 	public ModelAndView index_html(HttpServletRequest request, HttpSession session)
 	{
-		if (!DBManager_Inited) {
-			DBManager dbManager = new DBManager();
-			dbManager.initDataSource2(session, null);
-		}
-
 		ModelAndView mv = new ModelAndView("index");
 		mv.addObject("hello", "Hello");    // model中增加一个名为hello的字符串
 
@@ -61,11 +48,6 @@ public class HomeController {
 	@RequestMapping("/index.jsp")
 	public ModelAndView index_jsp(HttpServletRequest request, HttpSession session)
 	{
-		if (!DBManager_Inited) {
-			DBManager dbManager = new DBManager();
-			dbManager.initDataSource2(session, null);
-		}
-
 		ModelAndView mv = new ModelAndView("index");
 		mv.addObject("hello", "Hello");    // model中增加一个名为hello的字符串
 
@@ -148,4 +130,3 @@ public class HomeController {
 		return clientList;
 	}
 }
-

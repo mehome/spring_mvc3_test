@@ -9,7 +9,7 @@ import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.ServletContext;
 import javax.sql.DataSource;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -85,8 +85,7 @@ public class DBManager {
 	 * @param props
 	 * @param show_sql
 	 */
-	//private void initDataSource2(Servlet servlet, Properties dbProperties) {
-	public void initDataSource2(HttpSession httpSession, Properties dbProperties) {
+	public void initDataSource(ServletContext servletContext, Properties dbProperties) {
 		try {
 			if (dbProperties == null) {
 				if (s_dbProperties == null) {
@@ -95,7 +94,8 @@ public class DBManager {
 					//dbProperties.load(DBManager.class.getResourceAsStream("WEB-INF/db.properties"));
 					//dbProperties.load(DBManager.class.getClass().getClassLoader().getResourceAsStream("WEB-INF/db.properties"));
 					//dbProperties.load(servlet.getServletConfig().getServletContext().getResourceAsStream("/WEB-INF/db.properties"));
-					dbProperties.load(httpSession.getServletContext().getResourceAsStream("/WEB-INF/db.properties"));
+					//dbProperties.load(httpSession.getServletContext().getResourceAsStream("/WEB-INF/db.properties"));
+					dbProperties.load(servletContext.getResourceAsStream("/WEB-INF/db.properties"));
 					s_dbProperties = dbProperties;
 				}
 				else

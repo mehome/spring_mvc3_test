@@ -16,6 +16,7 @@
             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
             http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd">
 
+	<!-- 默认的注解映射的支持 -->
     <mvc:annotation-driven />
     <context:annotation-config />
     <context:component-scan base-package="net.i77soft.spring.mvc3.controller" />
@@ -27,10 +28,14 @@
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
 
-    <!-- 设置static静态文件目录的映射 -->
+    <!-- 如果当前请求为“/”时，则转发到“/index.html” -->
+    <mvc:view-controller path="/" view-name="forward:/index.html"/>
+
+	<!-- 静态资源映射, 设置static静态文件目录的映射 -->
     <mvc:resources mapping="/scripts/**" location="/assets/scripts/" />
-    <mvc:resources mapping="/styles/**" location="/assets/css/" />
+    <mvc:resources mapping="/css/**" location="/assets/css/" />
     <mvc:resources mapping="/images/**" location="/assets/images/" />
+    <mvc:resources mapping="/styles/**" location="/assets/styles/" />
     <mvc:default-servlet-handler />
 
     <!-- 拦截器设置 -->
@@ -63,7 +68,7 @@
     </bean>
     -->
 
-    <!-- 设置views视图采取的解释引擎, 以及views的起始路径, 后缀名 -->
+	<!-- 视图解析器, 设置views视图采取的解析引擎, 以及views的起始路径, 后缀名 -->
     <bean id="viewResolver"
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass">
