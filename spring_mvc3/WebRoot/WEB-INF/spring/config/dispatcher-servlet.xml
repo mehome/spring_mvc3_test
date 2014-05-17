@@ -16,7 +16,7 @@
             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
             http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd">
 
-	<!-- 默认的注解映射的支持 -->
+    <!-- 默认的注解映射的支持 -->
     <mvc:annotation-driven />
     <context:annotation-config />
     <context:component-scan base-package="net.i77soft.spring.mvc3.controller" />
@@ -31,7 +31,7 @@
     <!-- 如果当前请求为“/”时，则转发到“/index.html” -->
     <mvc:view-controller path="/" view-name="forward:/index.html"/>
 
-	<!-- 静态资源映射, 设置static静态文件目录的映射 -->
+    <!-- 静态资源映射, 设置static静态文件目录的映射 -->
     <mvc:resources mapping="/scripts/**" location="/assets/scripts/" />
     <mvc:resources mapping="/css/**" location="/assets/css/" />
     <mvc:resources mapping="/images/**" location="/assets/images/" />
@@ -68,7 +68,7 @@
     </bean>
     -->
 
-	<!-- 视图解析器, 设置views视图采取的解析引擎, 以及views的起始路径, 后缀名 -->
+    <!-- 视图解析器, 设置views视图采取的解析引擎, 以及views的起始路径, 后缀名 -->
     <bean id="viewResolver"
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass">
@@ -117,6 +117,17 @@
             <list>
                 <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
             </list>
+        </property>
+    </bean>
+
+    <!-- 支持上传文件 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设置上传文件的最大尺寸为2MB -->
+        <property name="maxUploadSize">
+            <value>2097152</value>
+        </property>
+        <property name="defaultEncoding">
+            <value>UTF-8</value>
         </property>
     </bean>
 
