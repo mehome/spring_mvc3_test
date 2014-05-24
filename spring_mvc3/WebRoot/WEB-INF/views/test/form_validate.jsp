@@ -22,7 +22,6 @@ ${client.name}
     <form:form method="post" modelAttribute="user">
         <p>用户注册页面：</p>
         <form:errors path="*" /><br/><br/>
-        ${user_form_errors}<br/><br/>
         <table width="60%" align="center">
             <colgroup>
                 <col width="10%" align="right" />

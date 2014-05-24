@@ -5,6 +5,8 @@ import net.i77soft.spring.mvc3.model.Client;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,6 +19,14 @@ public class HomeController {
 
 	public final static void addBaseURL(ModelAndView mv) {
 		mv.addObject("baseurl", baseurl);
+	}
+
+	public final static void addBaseURL(Model model) {
+		model.addAttribute("baseurl", baseurl);
+	}
+
+	public final static void addBaseURL(ModelMap model) {
+		model.addAttribute("baseurl", baseurl);
 	}
 
 	@RequestMapping("/")

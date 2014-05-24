@@ -50,6 +50,7 @@ build.sh
 
 # Eclipse artifacts, including WTP generated manifests
 .settings
+.externalToolBuilders
 spring-*/src/main/java/META-INF/MANIFEST.MF
 
 # IDEA artifacts and output dirs
