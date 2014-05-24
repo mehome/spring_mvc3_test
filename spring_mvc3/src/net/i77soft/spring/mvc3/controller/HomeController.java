@@ -19,7 +19,7 @@ public class HomeController {
 	public ModelAndView index_home()
 	{
 		ModelAndView mv = new ModelAndView("index");
-		StaticController.addBaseURL(mv);
+		StaticController.addGlobalObjects(mv);
 		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
 		Client client = new Client();
@@ -32,7 +32,7 @@ public class HomeController {
 	public ModelAndView welcome()
 	{
 		ModelAndView mv = new ModelAndView("home/welcome");
-		StaticController.addBaseURL(mv);
+		StaticController.addGlobalObjects(mv);
 		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
 		Client client = new Client();
@@ -45,7 +45,7 @@ public class HomeController {
 	public ModelAndView index_html()
 	{
 		ModelAndView mv = new ModelAndView("index");
-		StaticController.addBaseURL(mv);
+		StaticController.addGlobalObjects(mv);
 		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
 		Client client = new Client();
@@ -58,7 +58,7 @@ public class HomeController {
 	public ModelAndView index_jsp()
 	{
 		ModelAndView mv = new ModelAndView("index");
-		StaticController.addBaseURL(mv);
+		StaticController.addGlobalObjects(mv);
 		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
 		Client client = new Client();
