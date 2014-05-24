@@ -3,15 +3,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>www.spring.com - WebRoot/WEB-INF/views/hello.jsp</title>
+<title>www.spring.com - WebRoot/WEB-INF/views/test/reg_successed.jsp</title>
+<style type="text/css">
+.success {
+    color: red;
+}
+</style>
 </head>
 <body>
-www.spring.com - WebRoot/WEB-INF/views/hello.jsp<br/><br/>
-<a href="hello.html">Hello World!</a><br/>
+www.spring.com - WebRoot/WEB-INF/views/test/reg_successed.jsp<br/><br/>
+<a href="${baseurl}./home">返回首页</a><br/>
 <br/>
 ${hello}
 <br/>
 ${client.name}
 <br/><br/>
+<font class='success'>注册成功!</font><br/>
 </body>
 </html>

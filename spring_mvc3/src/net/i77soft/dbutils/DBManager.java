@@ -48,6 +48,9 @@ public class DBManager {
 	 */
 	public final static void initDataSource(ServletContext servletContext, Properties dbProperties) {
 		try {
+			if (dataSource != null)
+				return;
+
 			if (dbProperties == null) {
 				if (s_dbProperties == null) {
 					dbProperties = new Properties();

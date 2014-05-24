@@ -33,8 +33,9 @@ www.spring.com - WebRoot/WEB-INF/views/helloForm.jsp<br/><br/>
 <a href="hello.html">Hello World!</a><br/>
 <br/>
 ${hello}
-${client.name}
 <br/>
+${client.name}
+<br/><br/>
 <input id="btnGet" type="button" value="get client" />
 </body>
 </html>

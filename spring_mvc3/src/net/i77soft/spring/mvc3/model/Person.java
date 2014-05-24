@@ -41,9 +41,18 @@ public class Person {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
+		/*
 		sb.append("\nname : " + name);
 		sb.append("\nage : " + age);
 		sb.append("\naddress : " + address);
+		//*/
+
+		sb.append(getClass()).append("[")
+		.append("id=").append(id).append(", ")
+		.append("name=").append(name).append(", ")
+		.append("age=").append(age).append(", ")
+		.append("address=").append(address).append("]");
+
 		return sb.toString();
 	}
 }

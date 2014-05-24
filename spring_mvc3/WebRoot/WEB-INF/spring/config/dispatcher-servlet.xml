@@ -44,12 +44,12 @@
         <bean class="net.i77soft.spring.mvc3.interceptor.DBManagerHandlerInterceptor" />
         <mvc:interceptor>
             <!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
-            <mvc:mapping path="/ajax2" />
+            <mvc:mapping path="/test/ajax2" />
             <bean class="net.i77soft.spring.mvc3.interceptor.AjaxHandlerInterceptor" />
         </mvc:interceptor>
         <mvc:interceptor>
             <!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的, 可以定义多个特定的拦截器 -->
-            <mvc:mapping path="/ajax1/**" />
+            <mvc:mapping path="/test/ajax1/**" />
             <bean class="net.i77soft.spring.mvc3.interceptor.AjaxHandlerInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
