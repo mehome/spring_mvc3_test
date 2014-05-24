@@ -21,11 +21,57 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/")
 public class HomeController {
 
+	private final static String baseurl = "/spring_mvc3/";
+
+	private void addObjects(ModelAndView mv) {
+		mv.addObject("baseurl", baseurl);
+	}
+
 	@RequestMapping("/")
 	public ModelAndView index_home(HttpServletRequest request, HttpSession session)
 	{
 		ModelAndView mv = new ModelAndView("index");
-		mv.addObject("hello", "Hello");    // model中增加一个名为hello的字符串
+		addObjects(mv);
+		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
+
+		Client client = new Client();
+		client.setName("User");
+		mv.addObject("client", client);    // 再增加一个名为client的自定义对象
+		return mv;
+	}
+
+	@RequestMapping("/home")
+	public ModelAndView welcome()
+	{
+		ModelAndView mv = new ModelAndView("welcome");
+		addObjects(mv);
+		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
+
+		Client client = new Client();
+		client.setName("User");
+		mv.addObject("client", client);    // 再增加一个名为client的自定义对象
+		return mv;
+	}
+
+	@RequestMapping("/test/ajax_test")
+	public ModelAndView ajax_test()
+	{
+		ModelAndView mv = new ModelAndView("ajax_test");
+		addObjects(mv);
+		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
+
+		Client client = new Client();
+		client.setName("User");
+		mv.addObject("client", client);    // 再增加一个名为client的自定义对象
+		return mv;
+	}
+
+	@RequestMapping("/test/form_validate")
+	public ModelAndView form_validate()
+	{
+		ModelAndView mv = new ModelAndView("form_validate");
+		addObjects(mv);
+		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
 		Client client = new Client();
 		client.setName("User");
@@ -37,7 +83,8 @@ public class HomeController {
 	public ModelAndView index_html(HttpServletRequest request, HttpSession session)
 	{
 		ModelAndView mv = new ModelAndView("index");
-		mv.addObject("hello", "Hello");    // model中增加一个名为hello的字符串
+		addObjects(mv);
+		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
 		Client client = new Client();
 		client.setName("User");
@@ -49,7 +96,8 @@ public class HomeController {
 	public ModelAndView index_jsp(HttpServletRequest request, HttpSession session)
 	{
 		ModelAndView mv = new ModelAndView("index");
-		mv.addObject("hello", "Hello");    // model中增加一个名为hello的字符串
+		addObjects(mv);
+		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
 		Client client = new Client();
 		client.setName("User");
@@ -74,7 +122,7 @@ public class HomeController {
 	 * 可以在url中定义参数中，实现RESTful真是太简单了
 	 * 传参很灵活，可以从url中取，也可以定义普通的
 	 */
-	@RequestMapping(value="/client/{name}", method = RequestMethod.GET, headers = "Accept=application/json")
+	@RequestMapping(value="/test/client/{name}", method = RequestMethod.GET, headers = "Accept=application/json")
 	//@RequestMapping(value="/client/{name}", method = RequestMethod.GET, headers = "Accept=*/*")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -87,7 +135,7 @@ public class HomeController {
 		return client;
 	}
 
-	@RequestMapping(value="/ajax1", method = RequestMethod.GET, headers = "Accept=application/json")
+	@RequestMapping(value="/test/ajax1", method = RequestMethod.GET, headers = "Accept=application/json")
 	//@RequestMapping(value="/ajax1", method = RequestMethod.GET, headers = "Accept=*/*")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -100,7 +148,7 @@ public class HomeController {
 		return client;
 	}
 
-	@RequestMapping(value="/ajax1/*", method = RequestMethod.GET, headers = "Accept=application/json")
+	@RequestMapping(value="/test/ajax1/*", method = RequestMethod.GET, headers = "Accept=application/json")
 	//@RequestMapping(value="/ajax1", method = RequestMethod.GET, headers = "Accept=*/*")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -113,7 +161,7 @@ public class HomeController {
 		return client;
 	}
 
-	@RequestMapping(value="/ajax2/{name}", method = RequestMethod.GET, headers = "Accept=application/json")
+	@RequestMapping(value="/test/ajax2/{name}", method = RequestMethod.GET, headers = "Accept=application/json")
 	//@RequestMapping(value="/ajax2/{name}", method = RequestMethod.GET, headers = "Accept=*/*")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody

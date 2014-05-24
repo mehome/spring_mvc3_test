@@ -4,11 +4,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>www.spring.com - WebRoot/WEB-INF/views/index.jsp</title>
-<script type="text/javascript" src="assets/scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="${baseurl}assets/scripts/jquery-1.10.2.min.js"></script>
 <script>
 //alert("jquery 1.10.2 enter()!");
-$(function(){
-    $("#btnGet").click(function(){
+$(function() {
+    $("#btnGet").click(function() {
         $.ajax({
             type: 'GET',
             url : 'client/Tian',   		// 通过url传递name参数
@@ -33,8 +33,9 @@ www.spring.com - WebRoot/WEB-INF/views/index.jsp<br/><br/>
 <a href="hello.html">Hello World!</a><br/>
 <br/>
 ${hello}
-${client.name}
 <br/>
+${client.name}
+<br/><br/>
 <input id="btnGet" type="button" value="get client" />
 </body>
 </html>

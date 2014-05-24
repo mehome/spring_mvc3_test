@@ -3,79 +3,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="refresh" content="0; url=/spring_mvc3/home">
 <title>www.spring.com - WebRoot/index.jsp</title>
-<script type="text/javascript" src="assets/scripts/jquery-1.10.2.min.js"></script>
-<script>
-//alert("jquery 1.10.2 enter()!");
-$(function(){
-    $("#btnGet").click(function(){
-        $.ajax({
-            type: 'GET',
-            url : 'client/Tian',   		// 通过url传递name参数
-            dataType : 'json',
-            data: {title: "Mr Test 0"},	// 通过data传递title参数
-            success : function(data) {
-            	alert("ajax test 0 success!");
-                alert(data.name);
-            },
-            error : function(data) {
-            	alert("ajax error!");
-                alert(data.responseText);
-            }
-        });
-    });
-});
-
-$(function(){
-    $("#btnTest1").click(function(){
-        $.ajax({
-            type: 'GET',
-            url : 'ajax1',   			// 通过url传递name参数
-            dataType : 'json',
-            data: {title: "Mr Test 1"},	// 通过data传递title参数
-            success : function(data) {
-            	alert("ajax test 1 success!");
-                alert(data.name);
-            },
-            error : function(data) {
-            	alert("ajax error!");
-                alert(data.responseText);
-            }
-        });
-    });
-});
-
-$(function(){
-    $("#btnTest2").click(function(){
-        $.ajax({
-            type: 'GET',
-            url : 'ajax2/test',   		// 通过url传递name参数
-            dataType : 'json',
-            data: {title: "Mr Test 2"},	// 通过data传递title参数
-            success : function(data) {
-            	alert("ajax test 2 success!");
-            	for (var i = 0; i < data.length; i++)
-                	alert(data[i].name);
-            },
-            error : function(data) {
-            	alert("ajax error!");
-                alert(data.responseText);
-            }
-        });
-    });
-});
-//alert("jquery 1.10.2 over()!");
-</script>
 </head>
 <body>
 www.spring.com - WebRoot/index.jsp<br/><br/>
-<a href="hello.html">Hello World!</a><br/>
+This page will redirect to welcome page in 0 seconds...<br/><br/>
+if your browser does not automatically redirect, please click here <a href="./home">Welcome Home</a> ...<br/>
 <br/>
 ${hello}
-${client.name}
 <br/>
-<input id="btnGet" type="button" value="Get Client" /><br/><br/>
-<input id="btnTest1" type="button" value="Ajax Test1" /><br/><br/>
-<input id="btnTest2" type="button" value="Ajax Test2" /><br/>
+${client.name}<br/>
+<br/>
 </body>
 </html>

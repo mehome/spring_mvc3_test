@@ -53,7 +53,7 @@ public class AppInitializer implements WebApplicationInitializer {
 
 	public void startupDataBase(ServletContext servletContext) throws SQLException {
 		System.out.println(".");
-		System.out.println("========= WebApplicationInitializer::onStartup() enter =========");
+		System.out.println("========= WebApplicationInitializer::startupDataBase() enter =========");
 		if (!DBManager_Inited) {
 			DBManager.initDataSource(servletContext, null);
 			DBManager_Inited = true;
@@ -62,7 +62,7 @@ public class AppInitializer implements WebApplicationInitializer {
 		Connection conn = DBManager.getConnection();
 		DBManager.closeConnection();
 
-		System.out.println("========= WebApplicationInitializer::onStartup() over =========");
+		System.out.println("========= WebApplicationInitializer::startupDataBase() over =========");
 		System.out.println(".");
 	}
 }

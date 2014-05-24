@@ -7,6 +7,11 @@
 </head>
 <body>
 www.spring.com - WebRoot/WEB-INF/views/hello.jsp<br/><br/>
-<a href="hello.html">Hello World!</a>
+<a href="hello.html">Hello World!</a><br/>
+<br/>
+${hello}
+<br/>
+${client.name}
+<br/><br/>
 </body>
 </html>
