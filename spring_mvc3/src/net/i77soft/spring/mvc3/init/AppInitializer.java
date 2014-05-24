@@ -8,14 +8,20 @@ import java.sql.SQLException;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
 
 import net.i77soft.dbutils.DBManager;
 
 import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.servlet.DispatcherServlet;
 
 /**
  * @author shines77
- *
+ * 
+ * Reference: http://www.petrikainulainen.net/programming/tips-and-tricks/creating-restful-urls-with-spring-mvc-3-1-part-two-dispatcher-servlet-url-mappings/
+ * Reference: http://stackoverflow.com/questions/13455314/spring-mvc-implementation-of-webapplicationinitializer
+ * Reference: http://blog.csdn.net/uyehgdhg/article/details/17952769
  */
 public class AppInitializer implements WebApplicationInitializer {
 
@@ -23,7 +29,7 @@ public class AppInitializer implements WebApplicationInitializer {
 
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
-		/*
+		///*
 		AnnotationConfigWebApplicationContext webApplicationContext =
 				new AnnotationConfigWebApplicationContext();
 		webApplicationContext.register(BaseAppConfig.class);
