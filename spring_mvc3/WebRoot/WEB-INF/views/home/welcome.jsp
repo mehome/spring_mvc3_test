@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>www.spring.com - WebRoot/WEB-INF/views/welcome.jsp</title>
-<script type="text/javascript" src="${baseurl}assets/scripts/jquery-1.10.2.min.js"></script>
+<title>www.spring.com - WebRoot/WEB-INF/views/home/welcome.jsp</title>
+<script type="text/javascript" src="${baseurl}./assets/scripts/jquery-1.10.2.min.js"></script>
 </head>
 <body>
-www.spring.com - WebRoot/WEB-INF/views/welcome.jsp<br/>
+www.spring.com - WebRoot/WEB-INF/views/home/welcome.jsp<br/>
 <br/>
 ${hello}
 <br/>

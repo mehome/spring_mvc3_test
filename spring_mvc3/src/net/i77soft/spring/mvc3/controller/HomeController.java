@@ -43,7 +43,7 @@ public class HomeController {
 	@RequestMapping("/home")
 	public ModelAndView welcome()
 	{
-		ModelAndView mv = new ModelAndView("welcome");
+		ModelAndView mv = new ModelAndView("home/welcome");
 		addObjects(mv);
 		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
@@ -56,7 +56,7 @@ public class HomeController {
 	@RequestMapping("/test/ajax_test")
 	public ModelAndView ajax_test()
 	{
-		ModelAndView mv = new ModelAndView("ajax_test");
+		ModelAndView mv = new ModelAndView("test/ajax_test");
 		addObjects(mv);
 		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
@@ -69,7 +69,7 @@ public class HomeController {
 	@RequestMapping("/test/form_validate")
 	public ModelAndView form_validate()
 	{
-		ModelAndView mv = new ModelAndView("form_validate");
+		ModelAndView mv = new ModelAndView("test/form_validate");
 		addObjects(mv);
 		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 

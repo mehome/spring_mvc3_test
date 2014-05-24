@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>www.spring.com - WebRoot/WEB-INF/views/form_validate.jsp</title>
+<title>www.spring.com - WebRoot/WEB-INF/views/test/form_validate.jsp</title>
 </head>
 <body>
-www.spring.com - WebRoot/WEB-INF/views/form_validate.jsp<br/><br/>
+www.spring.com - WebRoot/WEB-INF/views/test/form_validate.jsp<br/><br/>
 <a href="${baseurl}./home">返回首页</a><br/>
 <br/>
 ${hello}

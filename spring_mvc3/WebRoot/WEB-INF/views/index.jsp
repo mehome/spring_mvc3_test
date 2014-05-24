@@ -4,14 +4,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>www.spring.com - WebRoot/WEB-INF/views/index.jsp</title>
-<script type="text/javascript" src="${baseurl}assets/scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="${baseurl}./assets/scripts/jquery-1.10.2.min.js"></script>
 <script>
 //alert("jquery 1.10.2 enter()!");
 $(function() {
     $("#btnGet").click(function() {
         $.ajax({
             type: 'GET',
-            url : 'client/Tian',   		// 通过url传递name参数
+            url : '${baseurl}./client/Tian',   		// 通过url传递name参数
             dataType : 'json',
             data: {title: "Mr"},   		// 通过data传递title参数
             success : function(data) {
