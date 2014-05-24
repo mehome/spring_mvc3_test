@@ -34,7 +34,7 @@ public class AjaxController {
 	public ModelAndView ajax_test()
 	{
 		ModelAndView mv = new ModelAndView("test/ajax_test");
-		HomeController.addBaseURL(mv);
+		StaticController.addBaseURL(mv);
 		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
 		Client client = new Client();

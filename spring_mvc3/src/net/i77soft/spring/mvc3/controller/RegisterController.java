@@ -49,7 +49,7 @@ public class RegisterController {
 	{
 		User user = new User();
 		ModelAndView mv = new ModelAndView("test/form_validate");
-		HomeController.addBaseURL(mv);
+		StaticController.addBaseURL(mv);
 		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
 		Client client = new Client();
@@ -63,7 +63,7 @@ public class RegisterController {
 	@RequestMapping(value = "/test/form_validate2", method = RequestMethod.POST)
 	public void doRegister(@Validated User user, BindingResult errors, ModelMap model)
 	{
-		HomeController.addBaseURL(model);
+		StaticController.addBaseURL(model);
 		model.addAttribute("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
 		Client client = new Client();
@@ -88,7 +88,7 @@ public class RegisterController {
 	@RequestMapping(value = "/test/form_validate", method = RequestMethod.POST)
 	public ModelAndView doRegister(@Validated User user, BindingResult errors, ModelAndView mv)
 	{
-		HomeController.addBaseURL(mv);
+		StaticController.addBaseURL(mv);
 		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
 		Client client = new Client();
@@ -110,7 +110,7 @@ public class RegisterController {
 		}
 
 		ModelAndView newMV = new ModelAndView("test/reg_successed");
-		HomeController.addBaseURL(newMV);
+		StaticController.addBaseURL(newMV);
 		newMV.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
 		Client newClient = new Client();
