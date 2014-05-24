@@ -1,37 +1,30 @@
 package net.i77soft.spring.mvc3.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import net.i77soft.spring.mvc3.model.Client;
 
-import org.springframework.http.HttpStatus;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping(value = "/")
 public class HomeController {
 
+	private final static Log log = LogFactory.getLog(HomeController.class);
 	private final static String baseurl = "/spring_mvc3/";
 
-	private void addObjects(ModelAndView mv) {
+	public final static void addBaseURL(ModelAndView mv) {
 		mv.addObject("baseurl", baseurl);
 	}
 
 	@RequestMapping("/")
-	public ModelAndView index_home(HttpServletRequest request, HttpSession session)
+	//public ModelAndView index_home(HttpServletRequest request, HttpSession session)
+	public ModelAndView index_home()
 	{
 		ModelAndView mv = new ModelAndView("index");
-		addObjects(mv);
+		addBaseURL(mv);
 		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
 		Client client = new Client();
@@ -44,33 +37,7 @@ public class HomeController {
 	public ModelAndView welcome()
 	{
 		ModelAndView mv = new ModelAndView("home/welcome");
-		addObjects(mv);
-		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
-
-		Client client = new Client();
-		client.setName("User");
-		mv.addObject("client", client);    // 再增加一个名为client的自定义对象
-		return mv;
-	}
-
-	@RequestMapping("/test/ajax_test")
-	public ModelAndView ajax_test()
-	{
-		ModelAndView mv = new ModelAndView("test/ajax_test");
-		addObjects(mv);
-		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
-
-		Client client = new Client();
-		client.setName("User");
-		mv.addObject("client", client);    // 再增加一个名为client的自定义对象
-		return mv;
-	}
-
-	@RequestMapping("/test/form_validate")
-	public ModelAndView form_validate()
-	{
-		ModelAndView mv = new ModelAndView("test/form_validate");
-		addObjects(mv);
+		addBaseURL(mv);
 		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
 		Client client = new Client();
@@ -80,10 +47,10 @@ public class HomeController {
 	}
 
 	@RequestMapping("/index.html")
-	public ModelAndView index_html(HttpServletRequest request, HttpSession session)
+	public ModelAndView index_html()
 	{
 		ModelAndView mv = new ModelAndView("index");
-		addObjects(mv);
+		addBaseURL(mv);
 		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
 		Client client = new Client();
@@ -93,10 +60,10 @@ public class HomeController {
 	}
 
 	@RequestMapping("/index.jsp")
-	public ModelAndView index_jsp(HttpServletRequest request, HttpSession session)
+	public ModelAndView index_jsp()
 	{
 		ModelAndView mv = new ModelAndView("index");
-		addObjects(mv);
+		addBaseURL(mv);
 		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
 		Client client = new Client();
@@ -117,64 +84,4 @@ public class HomeController {
 		return new ModelAndView("helloForm");
 	}
 
-	/**
-	 * 一个返回json的方法，用ResponseBody标识
-	 * 可以在url中定义参数中，实现RESTful真是太简单了
-	 * 传参很灵活，可以从url中取，也可以定义普通的
-	 */
-	@RequestMapping(value="/test/client/{name}", method = RequestMethod.GET, headers = "Accept=application/json")
-	//@RequestMapping(value="/client/{name}", method = RequestMethod.GET, headers = "Accept=*/*")
-	@ResponseStatus(HttpStatus.OK)
-	@ResponseBody
-	public Client getClient(@PathVariable String name, String title){
-		System.out.println("ajax /client/" + name);
-
-		Client client = new Client();
-		client.setName(title + " : " + name);
-
-		return client;
-	}
-
-	@RequestMapping(value="/test/ajax1", method = RequestMethod.GET, headers = "Accept=application/json")
-	//@RequestMapping(value="/ajax1", method = RequestMethod.GET, headers = "Accept=*/*")
-	@ResponseStatus(HttpStatus.OK)
-	@ResponseBody
-	public Client getAjax1(String title) {
-		System.out.println("ajax /ajax1 request--");
-
-		Client client = new Client();
-		client.setName("ajax1 test: title = \"" + title + "\"");
-
-		return client;
-	}
-
-	@RequestMapping(value="/test/ajax1/*", method = RequestMethod.GET, headers = "Accept=application/json")
-	//@RequestMapping(value="/ajax1", method = RequestMethod.GET, headers = "Accept=*/*")
-	@ResponseStatus(HttpStatus.OK)
-	@ResponseBody
-	public Client getAjax1_(String title) {
-		System.out.println("ajax /ajax1 request--");
-
-		Client client = new Client();
-		client.setName("ajax1 test: title = \"" + title + "\"");
-
-		return client;
-	}
-
-	@RequestMapping(value="/test/ajax2/{name}", method = RequestMethod.GET, headers = "Accept=application/json")
-	//@RequestMapping(value="/ajax2/{name}", method = RequestMethod.GET, headers = "Accept=*/*")
-	@ResponseStatus(HttpStatus.OK)
-	@ResponseBody
-	public List<Client> getAjax2(@PathVariable String name, String title) {
-		System.out.println("ajax /ajax2/" + name);
-
-		List<Client> clientList = new ArrayList<Client>();
-		for (int i=0; i<5; i++) {
-			Client client = new Client();
-			client.setName("ajax2 test" + (i + 1));
-			clientList.add(client);
-		}
-
-		return clientList;
-	}
 }

@@ -8,13 +8,10 @@ import java.sql.SQLException;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
 
 import net.i77soft.dbutils.DBManager;
 
 import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
 
 /**
  * @author shines77
@@ -29,7 +26,7 @@ public class AppInitializer implements WebApplicationInitializer {
 
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
-		///*
+		/*
 		AnnotationConfigWebApplicationContext webApplicationContext =
 				new AnnotationConfigWebApplicationContext();
 		webApplicationContext.register(BaseAppConfig.class);
