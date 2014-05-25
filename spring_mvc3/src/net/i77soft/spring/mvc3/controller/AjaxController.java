@@ -25,15 +25,15 @@ import org.springframework.web.servlet.ModelAndView;
  */
 
 @Controller
-@RequestMapping(value = "/")
+@RequestMapping(value = "/ajax")
 public class AjaxController {
 
 	private final static Log log = LogFactory.getLog(AjaxController.class);
 
-	@RequestMapping("/test/ajax_test")
+	@RequestMapping("/ajax_test")
 	public ModelAndView ajax_test()
 	{
-		ModelAndView mv = new ModelAndView("test/ajax_test");
+		ModelAndView mv = new ModelAndView("ajax/ajax_test");
 		StaticController.addGlobalObjects(mv);
 		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
@@ -48,7 +48,7 @@ public class AjaxController {
 	 * 可以在url中定义参数中，实现RESTful真是太简单了
 	 * 传参很灵活，可以从url中取，也可以定义普通的
 	 */
-	@RequestMapping(value="/test/client/{name}", method = RequestMethod.GET, headers = "Accept=application/json")
+	@RequestMapping(value="/client/{name}", method = RequestMethod.GET, headers = "Accept=application/json")
 	//@RequestMapping(value="/client/{name}", method = RequestMethod.GET, headers = "Accept=*/*")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -61,7 +61,7 @@ public class AjaxController {
 		return client;
 	}
 
-	@RequestMapping(value="/test/ajax1", method = RequestMethod.GET, headers = "Accept=application/json")
+	@RequestMapping(value="/ajax1", method = RequestMethod.GET, headers = "Accept=application/json")
 	//@RequestMapping(value="/ajax1", method = RequestMethod.GET, headers = "Accept=*/*")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -74,7 +74,7 @@ public class AjaxController {
 		return client;
 	}
 
-	@RequestMapping(value="/test/ajax1/*", method = RequestMethod.GET, headers = "Accept=application/json")
+	@RequestMapping(value="/ajax1/*", method = RequestMethod.GET, headers = "Accept=application/json")
 	//@RequestMapping(value="/ajax1", method = RequestMethod.GET, headers = "Accept=*/*")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -87,7 +87,7 @@ public class AjaxController {
 		return client;
 	}
 
-	@RequestMapping(value="/test/ajax2/{name}", method = RequestMethod.GET, headers = "Accept=application/json")
+	@RequestMapping(value="/ajax2/{name}", method = RequestMethod.GET, headers = "Accept=application/json")
 	//@RequestMapping(value="/ajax2/{name}", method = RequestMethod.GET, headers = "Accept=*/*")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody

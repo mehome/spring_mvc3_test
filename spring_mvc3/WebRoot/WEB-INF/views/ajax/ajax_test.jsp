@@ -11,7 +11,7 @@ $(function() {
     $("#btnGet").click(function() {
         $.ajax({
             type: 'GET',
-            url : '${baseurl}./test/client/Tian',   		// 通过url传递name参数
+            url : '${baseurl}./ajax/client/Tian',   		// 通过url传递name参数
             dataType : 'json',
             data: {title: "Mr Test 0"},	// 通过data传递title参数
             success : function(data) {
@@ -30,7 +30,7 @@ $(function() {
     $("#btnTest1").click(function() {
         $.ajax({
             type: 'GET',
-            url : '${baseurl}./test/ajax1',   			// 通过url传递name参数
+            url : '${baseurl}./ajax/ajax1',   			// 通过url传递name参数
             dataType : 'json',
             data: {title: "Mr Test 1"},	// 通过data传递title参数
             success : function(data) {
@@ -49,7 +49,7 @@ $(function() {
     $("#btnTest2").click(function() {
         $.ajax({
             type: 'GET',
-            url : '${baseurl}./test/ajax2/test',   		// 通过url传递name参数
+            url : '${baseurl}./ajax/ajax2/test',   		// 通过url传递name参数
             dataType : 'json',
             data: {title: "Mr Test 2"},	// 通过data传递title参数
             success : function(data) {

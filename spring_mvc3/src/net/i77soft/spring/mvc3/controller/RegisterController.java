@@ -25,7 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 
 @Controller
-@RequestMapping(value = "/")
+@RequestMapping(value = "/validate")
 public class RegisterController {
 
 	private final static Log log = LogFactory.getLog(RegisterController.class);
@@ -44,23 +44,57 @@ public class RegisterController {
 		System.out.println(".");
 	}
 
-	@RequestMapping(value = "/test/form_validate", method = RequestMethod.GET)
+	@RequestMapping(value = "/form_validate", method = RequestMethod.GET)
 	public ModelAndView form_validate()
 	{
 		User user = new User();
-		ModelAndView mv = new ModelAndView("test/form_validate");
+		ModelAndView mv = new ModelAndView("validate/form_validate");
 		StaticController.addGlobalObjects(mv);
-		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
+		mv.addObject("hello", "Hello World!");    	// model中增加一个名为hello的字符串
 
 		Client client = new Client();
 		client.setName("client.User");
-		mv.addObject("client", client);    // 再增加一个名为client的自定义对象
+		mv.addObject("client", client);    			// 再增加一个名为client的自定义对象
 		//((Model) mv).addAttribute(new User());
 		mv.addObject(user);
 		return mv;
 	}
 
-	@RequestMapping(value = "/test/form_validate2", method = RequestMethod.POST)
+	@RequestMapping(value = "/form_validate", method = RequestMethod.POST)
+	public ModelAndView doRegister(@Validated User user, BindingResult errors, ModelAndView mv)
+	{
+		StaticController.addGlobalObjects(mv);
+		mv.addObject("hello", "Hello World!");    	// model中增加一个名为hello的字符串
+
+		Client client = new Client();
+		client.setName("client.User");
+		mv.addObject("client", client);    			// 再增加一个名为client的自定义对象
+
+		if (log.isDebugEnabled()) {
+			log.debug("process url [/user], method [post] in " + getClass());
+		}
+
+		// 校验没有通过
+		if (errors.hasErrors()) {
+			mv.addObject("errors", errors.getFieldErrors());
+			return mv;
+		}
+
+		if (user != null) {
+			//userService.saveUser(user);
+		}
+
+		ModelAndView newMV = new ModelAndView("validate/reg_success");
+		StaticController.addGlobalObjects(newMV);
+		newMV.addObject("hello", "Hello World!");    	// model中增加一个名为hello的字符串
+
+		Client newClient = new Client();
+		newClient.setName("client.User");
+		newMV.addObject("client", newClient);    		// 再增加一个名为client的自定义对象
+		return newMV;
+	}
+
+	@RequestMapping(value = "/validate/form_validate2", method = RequestMethod.POST)
 	public void doRegister(@Validated User user, BindingResult errors, ModelMap model)
 	{
 		StaticController.addGlobalObjects(model);
@@ -83,40 +117,6 @@ public class RegisterController {
 		if (user != null) {
 			//userService.saveUser(user);
 		}
-	}
-
-	@RequestMapping(value = "/test/form_validate", method = RequestMethod.POST)
-	public ModelAndView doRegister(@Validated User user, BindingResult errors, ModelAndView mv)
-	{
-		StaticController.addGlobalObjects(mv);
-		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
-
-		Client client = new Client();
-		client.setName("client.User");
-		mv.addObject("client", client);    		// 再增加一个名为client的自定义对象
-
-		if (log.isDebugEnabled()) {
-			log.debug("process url [/user], method [post] in " + getClass());
-		}
-
-		// 校验没有通过
-		if (errors.hasErrors()) {
-			mv.addObject("errors", errors.getFieldErrors());
-			return mv;
-		}
-
-		if (user != null) {
-			//userService.saveUser(user);
-		}
-
-		ModelAndView newMV = new ModelAndView("test/reg_successed");
-		StaticController.addGlobalObjects(newMV);
-		newMV.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
-
-		Client newClient = new Client();
-		newClient.setName("client.User");
-		newMV.addObject("client", newClient);    		// 再增加一个名为client的自定义对象
-		return newMV;
 	}
 
 }
