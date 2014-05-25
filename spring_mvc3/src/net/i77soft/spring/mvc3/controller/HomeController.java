@@ -5,8 +5,6 @@ import net.i77soft.spring.mvc3.model.Client;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -15,26 +13,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
 
 	private final static Log log = LogFactory.getLog(HomeController.class);
-	private final static String baseurl = "/spring_mvc3/";
-
-	public final static void addBaseURL(ModelAndView mv) {
-		mv.addObject("baseurl", baseurl);
-	}
-
-	public final static void addBaseURL(Model model) {
-		model.addAttribute("baseurl", baseurl);
-	}
-
-	public final static void addBaseURL(ModelMap model) {
-		model.addAttribute("baseurl", baseurl);
-	}
 
 	@RequestMapping("/")
 	//public ModelAndView index_home(HttpServletRequest request, HttpSession session)
 	public ModelAndView index_home()
 	{
 		ModelAndView mv = new ModelAndView("index");
-		addBaseURL(mv);
+		StaticController.addGlobalObjects(mv);
 		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
 		Client client = new Client();
@@ -47,7 +32,7 @@ public class HomeController {
 	public ModelAndView welcome()
 	{
 		ModelAndView mv = new ModelAndView("home/welcome");
-		addBaseURL(mv);
+		StaticController.addGlobalObjects(mv);
 		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
 		Client client = new Client();
@@ -60,7 +45,7 @@ public class HomeController {
 	public ModelAndView index_html()
 	{
 		ModelAndView mv = new ModelAndView("index");
-		addBaseURL(mv);
+		StaticController.addGlobalObjects(mv);
 		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
 		Client client = new Client();
@@ -73,7 +58,7 @@ public class HomeController {
 	public ModelAndView index_jsp()
 	{
 		ModelAndView mv = new ModelAndView("index");
-		addBaseURL(mv);
+		StaticController.addGlobalObjects(mv);
 		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
 
 		Client client = new Client();

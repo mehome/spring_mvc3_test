@@ -16,8 +16,8 @@ ${client.name}
 <br/><br/>
 Spring MVC 3.2.4 Demo<br/>
 <ul>
-<li><a href="${baseurl}./test/ajax_test">Ajax测试</a></li>
-<li><a href="${baseurl}./test/form_validate">表单验证测试</a></li>
+<li><a href="${baseurl}./ajax/ajax_test">Ajax测试</a></li>
+<li><a href="${baseurl}./validate/form_validate">表单验证测试</a></li>
 </ul>
 </body>
 </html>
