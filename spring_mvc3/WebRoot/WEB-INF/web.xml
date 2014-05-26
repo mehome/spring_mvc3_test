@@ -51,9 +51,18 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!-- 设置servlet的首页文件 -->
+    <!-- 设置默认首页, 注: <welcome-file>设置为空时, 表示首页交给Spring拦截, 一般设置为index.htm, index.jsp等 -->
+    <!-- 还有一种方法把首页交给Spring拦截的, 就是默认首页不要设置后缀名(且第一个字符不是'/'), 否则会被当成静态文件处理, 具体见下. -->
     <welcome-file-list>
+    	<welcome-file></welcome-file>
+    	<!-- 这样也是可以的, 不要使用后缀名, 且第一个字符不是'/', Controller里配置拦截路径为"/home"即可
+        <welcome-file>home</welcome-file>
+        -->
+        <!--
+        <welcome-file>index.htm</welcome-file>
+        <welcome-file>index.html</welcome-file>
         <welcome-file>index.jsp</welcome-file>
+        -->
     </welcome-file-list>
 
 	<!-- 启用spring监听 -->
@@ -61,6 +70,7 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
+	<!-- 定义taglib -->
     <jsp-config>
         <taglib>
             <taglib-uri>/spring</taglib-uri>

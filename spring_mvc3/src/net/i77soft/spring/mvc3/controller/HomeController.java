@@ -12,19 +12,19 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/")
 public class HomeController {
 
+	@SuppressWarnings("unused")
 	private final static Log log = LogFactory.getLog(HomeController.class);
 
 	@RequestMapping("/")
-	//public ModelAndView index_home(HttpServletRequest request, HttpSession session)
 	public ModelAndView index_home()
 	{
-		ModelAndView mv = new ModelAndView("index");
+		ModelAndView mv = new ModelAndView("home/welcome");
 		StaticController.addGlobalObjects(mv);
-		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
+		mv.addObject("hello", "Hello World!");    	// model中增加一个名为hello的字符串
 
 		Client client = new Client();
 		client.setName("User");
-		mv.addObject("client", client);    // 再增加一个名为client的自定义对象
+		mv.addObject("client", client);    			// 再增加一个名为client的自定义对象
 		return mv;
 	}
 
@@ -33,24 +33,25 @@ public class HomeController {
 	{
 		ModelAndView mv = new ModelAndView("home/welcome");
 		StaticController.addGlobalObjects(mv);
-		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
+		mv.addObject("hello", "Hello World!");    	// model中增加一个名为hello的字符串
 
 		Client client = new Client();
 		client.setName("User");
-		mv.addObject("client", client);    // 再增加一个名为client的自定义对象
+		mv.addObject("client", client);    			// 再增加一个名为client的自定义对象
 		return mv;
 	}
 
-	@RequestMapping("/index.html")
+	@RequestMapping(value = {"/index.htm", "/index.html"})
+	//public ModelAndView index_html(HttpServletRequest request, HttpSession session)
 	public ModelAndView index_html()
 	{
 		ModelAndView mv = new ModelAndView("index");
 		StaticController.addGlobalObjects(mv);
-		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
+		mv.addObject("hello", "Hello World!");    	// model中增加一个名为hello的字符串
 
 		Client client = new Client();
 		client.setName("User");
-		mv.addObject("client", client);    // 再增加一个名为client的自定义对象
+		mv.addObject("client", client);    			// 再增加一个名为client的自定义对象
 		return mv;
 	}
 
@@ -59,11 +60,11 @@ public class HomeController {
 	{
 		ModelAndView mv = new ModelAndView("index");
 		StaticController.addGlobalObjects(mv);
-		mv.addObject("hello", "Hello World!");    // model中增加一个名为hello的字符串
+		mv.addObject("hello", "Hello World!");    	// model中增加一个名为hello的字符串
 
 		Client client = new Client();
 		client.setName("User");
-		mv.addObject("client", client);    // 再增加一个名为client的自定义对象
+		mv.addObject("client", client);    			// 再增加一个名为client的自定义对象
 		return mv;
 	}
 

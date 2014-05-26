@@ -11,7 +11,7 @@ $(function() {
     $("#btnGet").click(function() {
         $.ajax({
             type: 'GET',
-            url : '${baseurl}./client/Tian',   		// 通过url传递name参数
+            url : '${baseurl}./ajax/client/Tian',   		// 通过url传递name参数
             dataType : 'json',
             data: {title: "Mr"},   		// 通过data传递title参数
             success : function(data) {
@@ -30,7 +30,7 @@ $(function() {
 </head>
 <body>
 www.spring.com - WebRoot/WEB-INF/views/index.jsp<br/><br/>
-<a href="hello.html">Hello World!</a><br/>
+<a href="${baseurl}./home">Hello World!</a><br/>
 <br/>
 ${hello}
 <br/>
