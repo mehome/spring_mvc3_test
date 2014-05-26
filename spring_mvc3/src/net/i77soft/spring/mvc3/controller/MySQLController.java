@@ -26,7 +26,7 @@ public class MySQLController {
 	private final static int query_mode = 1;
 
 	@RequestMapping("/db_test")
-	@SuppressWarnings({ "unused" })
+	@SuppressWarnings("unused")
 	public ModelAndView db_test()
 	{
 		ModelAndView mv = new ModelAndView("mysql/db_test");

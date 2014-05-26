@@ -29,6 +29,11 @@ import org.apache.commons.lang3.ArrayUtils;
  * 数据库查询助手
  *
  * @author Winter Lau<br>
+ *
+ * @modified: shines77
+ *
+ * 参考: http://commons.apache.org/proper/commons-dbutils/examples.html
+ *
  */
 @SuppressWarnings("unchecked")
 public class QueryHelper {
@@ -155,7 +160,7 @@ public class QueryHelper {
 
 	/**
 	 * 获取数据库连接
-	 * 
+	 *
 	 * @return Connection
 	 */
 	public static Connection getConnection() {
@@ -168,7 +173,7 @@ public class QueryHelper {
 
 	/**
 	 * 关闭数据库连接
-	 * 
+	 *
 	 * @return void
 	 */
 	public static void closeConnection() {
@@ -181,7 +186,7 @@ public class QueryHelper {
 
 	/**
 	 * 读取某个对象
-	 * 
+	 *
 	 * @param sql
 	 * @param params
 	 * @return
@@ -209,7 +214,7 @@ public class QueryHelper {
 
 	/**
 	 * 对象查询
-	 * 
+	 *
 	 * @param <T>
 	 * @param beanClass
 	 * @param sql
@@ -229,7 +234,7 @@ public class QueryHelper {
 
 	/**
 	 * 支持缓存的对象查询
-	 * 
+	 *
 	 * @param <T>
 	 * @param beanClass
 	 * @param cache_region
@@ -250,7 +255,7 @@ public class QueryHelper {
 
 	/**
 	 * 分页查询
-	 * 
+	 *
 	 * @param <T>
 	 * @param beanClass
 	 * @param sql
@@ -272,7 +277,7 @@ public class QueryHelper {
 
 	/**
 	 * 支持缓存的分页查询
-	 * 
+	 *
 	 * @param <T>
 	 * @param beanClass
 	 * @param cache
@@ -308,7 +313,7 @@ public class QueryHelper {
 
 	/**
 	 * 执行统计查询语句，语句的执行结果必须只返回一个数值
-	 * 
+	 *
 	 * @param sql
 	 * @param params
 	 * @return
@@ -325,7 +330,7 @@ public class QueryHelper {
 
 	/**
 	 * 执行统计查询语句，语句的执行结果必须只返回一个数值
-	 * 
+	 *
 	 * @param cache_region
 	 * @param key
 	 * @param sql
@@ -344,7 +349,7 @@ public class QueryHelper {
 
 	/**
 	 * 执行SELECT语句(只返回第一条记录)
-	 * 
+	 *
 	 * @param sql
 	 * @param params
 	 * @return Object[]
@@ -359,7 +364,7 @@ public class QueryHelper {
 
 	/**
 	 * 执行SELECT语句(只返回第一条记录)
-	 * 
+	 *
 	 * @param sql
 	 * @param params
 	 * @return Object[]
@@ -376,7 +381,7 @@ public class QueryHelper {
 
 	/**
 	 * 执行SELECT语句(返回多条记录)
-	 * 
+	 *
 	 * @param sql
 	 * @param params
 	 * @return List<Object[]>
@@ -391,7 +396,7 @@ public class QueryHelper {
 
 	/**
 	 * 执行SELECT语句(返回多条记录)
-	 * 
+	 *
 	 * @param sql
 	 * @param params
 	 * @return List<Object[]>
@@ -408,7 +413,7 @@ public class QueryHelper {
 
 	/**
 	 * 执行SELECT语句(只返回第一条记录)
-	 * 
+	 *
 	 * @param sql
 	 * @param params
 	 * @return Map<String, Object>
@@ -423,7 +428,7 @@ public class QueryHelper {
 
 	/**
 	 * 执行SELECT语句(只返回第一条记录)
-	 * 
+	 *
 	 * @param sql
 	 * @param params
 	 * @return Map<String, Object>
@@ -440,7 +445,7 @@ public class QueryHelper {
 
 	/**
 	 * 执行SELECT语句(返回多条记录)
-	 * 
+	 *
 	 * @param sql
 	 * @param params
 	 * @return List<Map<String, Object>>
@@ -455,7 +460,7 @@ public class QueryHelper {
 
 	/**
 	 * 执行SELECT语句(返回多条记录)
-	 * 
+	 *
 	 * @param sql
 	 * @param params
 	 * @return List<Map<String, Object>>
@@ -472,7 +477,7 @@ public class QueryHelper {
 
 	/**
 	 * 执行INSERT/UPDATE/DELETE语句
-	 * 
+	 *
 	 * @param sql
 	 * @param params
 	 * @return
@@ -487,7 +492,7 @@ public class QueryHelper {
 
 	/**
 	 * 执行UPDATE语句
-	 * 
+	 *
 	 * @param sql
 	 * @param params
 	 * @return
@@ -498,7 +503,7 @@ public class QueryHelper {
 
 	/**
 	 * 执行INSERT语句
-	 * 
+	 *
 	 * @param sql
 	 * @param params
 	 * @return
@@ -509,7 +514,7 @@ public class QueryHelper {
 
 	/**
 	 * 执DELETE语句
-	 * 
+	 *
 	 * @param sql
 	 * @param params
 	 * @return
@@ -520,7 +525,7 @@ public class QueryHelper {
 
 	/**
 	 * 批量执行指定的SQL语句
-	 * 
+	 *
 	 * @param sql
 	 * @param params
 	 * @return

@@ -5,7 +5,7 @@ package net.i77soft.spring.mvc3.model;
 
 
 /**
- * @author Administrator
+ * @author shines77
  *
  */
 
