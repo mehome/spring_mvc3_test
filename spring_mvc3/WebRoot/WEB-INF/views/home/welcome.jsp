@@ -18,6 +18,7 @@ Spring MVC 3.2.4 Demo<br/>
 <ul>
 <li><a href="${baseurl}./ajax/ajax_test">Ajax测试</a></li>
 <li><a href="${baseurl}./validate/form_validate">表单验证测试</a></li>
+<li><a href="${baseurl}./mysql/db_test">数据库测试</a></li>
 </ul>
 </body>
 </html>
