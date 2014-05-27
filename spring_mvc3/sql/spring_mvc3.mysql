@@ -1,0 +1,167 @@
+/*
+SQLyog Ultimate v10.51 
+MySQL - 5.1.30-community : Database - spring_mvc3
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`spring_mvc3` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+
+USE `spring_mvc3`;
+
+/*Table structure for table `t_area` */
+
+DROP TABLE IF EXISTS `t_area`;
+
+CREATE TABLE `t_area` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `regionId` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `regionName` char(7) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'UNK',
+  `langId` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `langLocale` char(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'LOC',
+  `areaId` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `areaName` char(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Unknown',
+  `areaNameFull` char(63) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Unknown Area',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `t_area` */
+
+insert  into `t_area`(`id`,`regionId`,`regionName`,`langId`,`langLocale`,`areaId`,`areaName`,`areaNameFull`) values (1,1,'WUS',1,'EN_US',1,'US_WEST','West of US.');
+
+/*Table structure for table `t_gameserver` */
+
+DROP TABLE IF EXISTS `t_gameserver`;
+
+CREATE TABLE `t_gameserver` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `regionId` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `regionName` char(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'UNK',
+  `areaId` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `areaName` char(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Unknown',
+  `areaNameFull` char(63) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Unknown Area',
+  `langId` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `langLocale` char(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'LOC',
+  `serverId` int(8) unsigned NOT NULL DEFAULT '0',
+  `serverName` char(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Unknown',
+  `serverNameFull` char(31) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Unknown Server',
+  `serverNameAlias` char(63) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Unknown Server Alias',
+  `serverIP` char(31) COLLATE utf8_unicode_ci NOT NULL DEFAULT '1.1.1.1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `t_gameserver` */
+
+insert  into `t_gameserver`(`id`,`regionId`,`regionName`,`areaId`,`areaName`,`areaNameFull`,`langId`,`langLocale`,`serverId`,`serverName`,`serverNameFull`,`serverNameAlias`,`serverIP`) values (1,1,'CN',1,'CN_HN','电信区',5,'CHN',105,'HN1','电信一区','艾欧尼亚','192.16.1.1');
+
+/*Table structure for table `t_lang` */
+
+DROP TABLE IF EXISTS `t_lang`;
+
+CREATE TABLE `t_lang` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `langId_main` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `langLocale_main` char(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'UNK',
+  `langId` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `langLocale` char(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'LOC',
+  `langLocaleFull` char(63) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Unknown Locale',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `t_lang` */
+
+insert  into `t_lang`(`id`,`langId_main`,`langLocale_main`,`langId`,`langLocale`,`langLocaleFull`) values (1,1,'EN',1,'EN_US','English US.'),(2,1,'EN',2,'EN_EN','English EN.');
+
+/*Table structure for table `t_lang_main` */
+
+DROP TABLE IF EXISTS `t_lang_main`;
+
+CREATE TABLE `t_lang_main` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `langId_main` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `langLocale_main` char(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'LOC',
+  `langLocaleFull_main` char(63) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Unknown Locale',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `t_lang_main` */
+
+insert  into `t_lang_main`(`id`,`langId_main`,`langLocale_main`,`langLocaleFull_main`) values (1,1,'EN','English');
+
+/*Table structure for table `t_matchinfo` */
+
+DROP TABLE IF EXISTS `t_matchinfo`;
+
+CREATE TABLE `t_matchinfo` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `regionId` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `regionName` char(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'UNK',
+  `areaId` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `areaName` char(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'aren',
+  `langId` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `langLocale` char(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'EN_US',
+  `serverId` int(8) unsigned NOT NULL DEFAULT '0',
+  `serverName` char(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Unknown',
+  `serverNameAlias` char(63) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Unknown Server Alias',
+  `serverIp` char(31) COLLATE utf8_unicode_ci NOT NULL DEFAULT '1.1.1.1',
+  `gameId` int(10) unsigned NOT NULL DEFAULT '0',
+  `mapId` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `gameMode` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `gameType` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `gameQueueConfigId` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `participantsId` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`serverId`,`gameId`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='MatchList Info';
+
+/*Data for the table `t_matchinfo` */
+
+insert  into `t_matchinfo`(`id`,`regionId`,`regionName`,`areaId`,`areaName`,`langId`,`langLocale`,`serverId`,`serverName`,`serverNameAlias`,`serverIp`,`gameId`,`mapId`,`gameMode`,`gameType`,`gameQueueConfigId`,`participantsId`) values (1,5,'CN',0,'CN_HN',0,'ZH_CN',164,'HN1','艾欧尼亚','192.168.1.1',444656081,1,1,2,4,1);
+
+/*Table structure for table `t_region` */
+
+DROP TABLE IF EXISTS `t_region`;
+
+CREATE TABLE `t_region` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `regionId_main` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `regionName_main` char(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'UNK',
+  `regionId` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `regionName` char(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'UNK SUB',
+  `regionFullName` char(127) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Unknown Sub Region',
+  `langId` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `langLocale` char(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'UNK LOC',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `t_region` */
+
+insert  into `t_region`(`id`,`regionId_main`,`regionName_main`,`regionId`,`regionName`,`regionFullName`,`langId`,`langLocale`) values (2,1,'US',1,'WUS','West of US.',0,'');
+
+/*Table structure for table `t_region_main` */
+
+DROP TABLE IF EXISTS `t_region_main`;
+
+CREATE TABLE `t_region_main` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `regionId_main` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `regionName_main` char(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'UNK',
+  `regionFullName_main` char(63) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Unknown Region',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `t_region_main` */
+
+insert  into `t_region_main`(`id`,`regionId_main`,`regionName_main`,`regionFullName_main`) values (1,1,'US','Unit State of American');
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
