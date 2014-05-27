@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package net.i77soft.spring.mvc3.controller;
 
@@ -16,6 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * Reference: http://stackoverflow.com/questions/6970115/spring-mvc-request-urls-in-jsp
  *
+ * <a href="${contextPath}/admin/listPeople">Go to People List</a>
+ *
+ * <c:url value="/admin/listPeople"/>
+ *
  * Root URl of the servlet
  *
  * Reference: http://stackoverflow.com/questions/1629102/root-url-of-the-servlet/1629133#1629133
@@ -23,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * You do realize that the URL client sees (and/or types into his browser)
  *   and the URL served by the container your servlet is deployed on can be very different?
+ *
  * In order to get the latter, though, you have a few methods available on HttpServletRequest:
  *
  *   You can either call getScheme(), getServerName(), getServerPort() and getContextPath()
