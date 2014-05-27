@@ -1,4 +1,5 @@
 !/build/README
-!/lib/README.txt
 !/lib/README
 /lib/*.jar
+
+/WebRoot/WEB-INF/classes

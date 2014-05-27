@@ -41,17 +41,17 @@ public class MySQLController {
 
 		GameServer gameServer = null;
 		if (query_mode == 1) {
-			gameServer = QueryHelper.read(GameServer.class, "select * from gameserver where id = 1");
+			gameServer = QueryHelper.read(GameServer.class, "select * from t_gameserver where id = 1");
 		}
 		else if (query_mode == 2 || query_mode == 3) {
 			Object[] result = null;
 			if (query_mode == 2) {
-				result = QueryHelper.selectOne("select * from gameserver");
+				result = QueryHelper.selectOne("select * from t_gameserver");
 				gameServer = new GameServer();
 			}
 			else {
 				/* query_mode == 3 */
-				List<Object[]> resultList = QueryHelper.select("select * from gameserver");
+				List<Object[]> resultList = QueryHelper.select("select * from t_gameserver");
 				result = resultList.get(0);
 				gameServer = new GameServer();
 			}
@@ -67,12 +67,12 @@ public class MySQLController {
 		else {
 			Map<String, Object> result = null;
 			if (query_mode == 4) {
-				result = QueryHelper.selectOne_map("select * from gameserver");
+				result = QueryHelper.selectOne_map("select * from t_gameserver");
 				gameServer = new GameServer();
 			}
 			else {
 				/* query_mode == 5 */
-				List<Map<String, Object>> resultList = QueryHelper.select_map("select * from gameserver");
+				List<Map<String, Object>> resultList = QueryHelper.select_map("select * from t_gameserver");
 				result = resultList.get(0);
 				gameServer = new GameServer();
 			}
