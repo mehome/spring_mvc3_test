@@ -12,7 +12,7 @@
 </head>
 <body>
 www.spring.com - WebRoot/WEB-INF/views/test/reg_successed.jsp<br/><br/>
-<a href="${baseurl}./home">返回首页</a><br/>
+<a href="${baseURL}/home">返回首页</a><br/>
 <br/>
 ${hello}
 <br/>

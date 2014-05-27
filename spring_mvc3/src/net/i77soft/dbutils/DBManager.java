@@ -136,8 +136,9 @@ public class DBManager {
 
 	/**
 	 * 关闭连接
+	 * @throws SQLException
 	 */
-	public final static void closeConnection() {
+	public final static void closeConnection() throws SQLException {
 		Connection conn = conns.get();
 		try {
 			if (conn != null && !conn.isClosed()) {
@@ -147,7 +148,9 @@ public class DBManager {
 		} catch (SQLException e) {
 			log.error("Unabled to close connection!!! ", e);
 		}
-		conns.set(null);
+		finally {
+			conns.set(null);
+		}
 	}
 
 	/**

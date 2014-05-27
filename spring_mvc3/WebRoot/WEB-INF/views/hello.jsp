@@ -7,7 +7,7 @@
 </head>
 <body>
 www.spring.com - WebRoot/WEB-INF/views/hello.jsp<br/><br/>
-<a href="hello.html">Hello World!</a><br/>
+<a href="${baseURL}/home">Hello World!</a><br/>
 <br/>
 ${hello}
 <br/>

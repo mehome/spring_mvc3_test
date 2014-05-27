@@ -4,14 +4,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>www.spring.com - WebRoot/WEB-INF/views/helloForm.jsp</title>
-<script type="text/javascript" src="assets/scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="${baseURL}/assets/scripts/jquery-1.10.2.min.js"></script>
 <script>
 //alert("jquery 1.10.2 enter()!");
-$(function(){
-    $("#btnGet").click(function(){
+$(function() {
+    $("#btnGet").click(function() {
         $.ajax({
             type: 'GET',
-            url : 'client/Tian',  		// 通过url传递name参数
+            url : '${baseURL}/ajax/client/Tian',  		// 通过url传递name参数
             dataType : 'json',
             data: {title: "Mr"},   		// 通过data传递title参数
             success : function(data) {
@@ -30,7 +30,7 @@ $(function(){
 </head>
 <body>
 www.spring.com - WebRoot/WEB-INF/views/helloForm.jsp<br/><br/>
-<a href="hello.html">Hello World!</a><br/>
+<a href="${baseURL}/home">Hello World!</a><br/>
 <br/>
 ${hello}
 <br/>

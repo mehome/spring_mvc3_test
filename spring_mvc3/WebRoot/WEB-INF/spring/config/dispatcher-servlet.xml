@@ -27,9 +27,9 @@
 
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
-
-    <!-- 如果当前请求为“/”时，则转发到“/index.html” -->
-    <mvc:view-controller path="/" view-name="forward:/index.html"/>
+    
+    <!-- 如果当前请求为“/”时，则转发到“/index.html”, 前提是没有任何Controller拦截首页的情况下才有效 -->
+    <mvc:view-controller path="/" view-name="forward:/index.html"/>    
 
     <!-- 静态资源映射, 设置static静态文件目录的映射 -->
     <mvc:resources mapping="/scripts/**" location="/assets/scripts/" />

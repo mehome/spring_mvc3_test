@@ -6,6 +6,8 @@ package net.i77soft.spring.mvc3.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import net.i77soft.spring.mvc3.model.Client;
 
 import org.apache.commons.logging.Log;
@@ -28,10 +30,11 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/ajax")
 public class AjaxController {
 
+	@SuppressWarnings("unused")
 	private final static Log log = LogFactory.getLog(AjaxController.class);
 
 	@RequestMapping("/ajax_test")
-	public ModelAndView ajax_test()
+	public ModelAndView ajax_test(HttpServletRequest request)
 	{
 		ModelAndView mv = new ModelAndView("ajax/ajax_test");
 		StaticController.addGlobalObjects(mv);

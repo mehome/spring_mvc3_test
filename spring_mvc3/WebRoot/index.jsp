@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="refresh" content="0; url=/spring_mvc3/home">
+<meta http-equiv="refresh" content="0; url=./home">
 <title>www.spring.com - WebRoot/index.jsp</title>
 </head>
 <body>

@@ -33,7 +33,7 @@ public class SpringTestService {
 		}
 	}
 
-	public void destroy() {
+	public void destroy() throws SQLException {
 		DBManager.closeConnection();
 	}
 

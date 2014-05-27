@@ -94,7 +94,7 @@ public class RegisterController {
 		return newMV;
 	}
 
-	@RequestMapping(value = "/validate/form_validate2", method = RequestMethod.POST)
+	@RequestMapping(value = "/form_validate2", method = RequestMethod.POST)
 	public void doRegister(@Validated User user, BindingResult errors, ModelMap model)
 	{
 		StaticController.addGlobalObjects(model);
