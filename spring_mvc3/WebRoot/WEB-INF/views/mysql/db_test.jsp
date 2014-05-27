@@ -13,7 +13,7 @@
 </head>
 <body>
 www.spring.com - WebRoot/WEB-INF/views/mysql/db_test.jsp<br/><br/>
-<a href="${baseurl}./home">返回首页</a><br/>
+<a href="${baseURL}/home">返回首页</a><br/>
 <br/>
 ${hello}
 <br/>

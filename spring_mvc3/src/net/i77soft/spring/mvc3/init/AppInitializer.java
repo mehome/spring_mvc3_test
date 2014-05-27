@@ -10,6 +10,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import net.i77soft.dbutils.DBManager;
+import net.i77soft.spring.mvc3.controller.StaticController;
 
 import org.springframework.web.WebApplicationInitializer;
 
@@ -38,9 +39,12 @@ public class AppInitializer implements WebApplicationInitializer {
 		servlet.setLoadOnStartup(1);
 		//*/
 
+		// 设置baseURL(ContextPath)
+		StaticController.setBaseURL(servletContext.getContextPath());
+
 		///*
 		try {
-			startupDataBase(servletContext);
+			initDataSource(servletContext);
 		}
 		catch (SQLException e) {
 			//
@@ -48,7 +52,7 @@ public class AppInitializer implements WebApplicationInitializer {
 		//*/
 	}
 
-	public void startupDataBase(ServletContext servletContext) throws SQLException {
+	public void initDataSource(ServletContext servletContext) throws SQLException {
 		System.out.println(".");
 		System.out.println("========= WebApplicationInitializer::startupDataBase() enter =========");
 		if (!DBManager_Inited) {

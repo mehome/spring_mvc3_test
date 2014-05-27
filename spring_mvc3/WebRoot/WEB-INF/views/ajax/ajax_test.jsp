@@ -4,14 +4,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>www.spring.com - WebRoot/WEB-INF/views/test/ajax_test.jsp</title>
-<script type="text/javascript" src="${baseurl}./assets/scripts/jquery-1.10.2.min.js"></script>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<script type="text/javascript" src="${baseURL}/assets/scripts/jquery-1.10.2.min.js"></script>
 <script>
 //alert("jquery 1.10.2 enter()!");
 $(function() {
     $("#btnGet").click(function() {
         $.ajax({
             type: 'GET',
-            url : '${baseurl}./ajax/client/Tian',   		// 通过url传递name参数
+            url : '${baseURL}/ajax/client/Tian',   		// 通过url传递name参数
             dataType : 'json',
             data: {title: "Mr Test 0"},	// 通过data传递title参数
             success : function(data) {
@@ -30,7 +31,7 @@ $(function() {
     $("#btnTest1").click(function() {
         $.ajax({
             type: 'GET',
-            url : '${baseurl}./ajax/ajax1',   			// 通过url传递name参数
+            url : '${baseURL}/ajax/ajax1',   			// 通过url传递name参数
             dataType : 'json',
             data: {title: "Mr Test 1"},	// 通过data传递title参数
             success : function(data) {
@@ -49,7 +50,7 @@ $(function() {
     $("#btnTest2").click(function() {
         $.ajax({
             type: 'GET',
-            url : '${baseurl}./ajax/ajax2/test',   		// 通过url传递name参数
+            url : '${baseURL}/ajax/ajax2/test',   		// 通过url传递name参数
             dataType : 'json',
             data: {title: "Mr Test 2"},	// 通过data传递title参数
             success : function(data) {
@@ -69,7 +70,7 @@ $(function() {
 </head>
 <body>
 www.spring.com - WebRoot/WEB-INF/views/test/ajax_test.jsp<br/><br/>
-<a href="${baseurl}./home">返回首页</a><br/>
+<a href="${baseURL}/home">返回首页</a><br/>
 <br/>
 ${hello}
 <br/>

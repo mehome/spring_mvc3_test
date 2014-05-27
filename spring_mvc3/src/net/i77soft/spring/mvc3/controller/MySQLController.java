@@ -6,6 +6,8 @@ package net.i77soft.spring.mvc3.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import net.i77soft.dbutils.QueryHelper;
 import net.i77soft.spring.mvc3.model.Client;
 import net.i77soft.spring.mvc3.model.GameServer;
@@ -27,10 +29,10 @@ public class MySQLController {
 
 	@RequestMapping("/db_test")
 	@SuppressWarnings("unused")
-	public ModelAndView db_test()
+	public ModelAndView db_test(HttpServletRequest request)
 	{
 		ModelAndView mv = new ModelAndView("mysql/db_test");
-		StaticController.addGlobalObjects(mv);
+		StaticController.addGlobalObjects(mv, request);
 		mv.addObject("hello", "Hello World!");    	// model中增加一个名为hello的字符串
 
 		Client client = new Client();

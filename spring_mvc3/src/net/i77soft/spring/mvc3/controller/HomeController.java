@@ -1,5 +1,7 @@
 package net.i77soft.spring.mvc3.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import net.i77soft.spring.mvc3.model.Client;
 
 import org.apache.commons.logging.Log;
@@ -16,10 +18,10 @@ public class HomeController {
 	private final static Log log = LogFactory.getLog(HomeController.class);
 
 	@RequestMapping("/")
-	public ModelAndView index_home()
+	public ModelAndView index_home(HttpServletRequest request)
 	{
 		ModelAndView mv = new ModelAndView("home/welcome");
-		StaticController.addGlobalObjects(mv);
+		StaticController.addGlobalObjects(mv, request);
 		mv.addObject("hello", "Hello World!");    	// model中增加一个名为hello的字符串
 
 		Client client = new Client();
@@ -29,10 +31,10 @@ public class HomeController {
 	}
 
 	@RequestMapping("/home")
-	public ModelAndView welcome()
+	public ModelAndView welcome(HttpServletRequest request)
 	{
 		ModelAndView mv = new ModelAndView("home/welcome");
-		StaticController.addGlobalObjects(mv);
+		StaticController.addGlobalObjects(mv, request);
 		mv.addObject("hello", "Hello World!");    	// model中增加一个名为hello的字符串
 
 		Client client = new Client();
@@ -43,10 +45,10 @@ public class HomeController {
 
 	@RequestMapping(value = {"/index.htm", "/index.html"})
 	//public ModelAndView index_html(HttpServletRequest request, HttpSession session)
-	public ModelAndView index_html()
+	public ModelAndView index_html(HttpServletRequest request)
 	{
 		ModelAndView mv = new ModelAndView("index");
-		StaticController.addGlobalObjects(mv);
+		StaticController.addGlobalObjects(mv, request);
 		mv.addObject("hello", "Hello World!");    	// model中增加一个名为hello的字符串
 
 		Client client = new Client();
@@ -56,10 +58,10 @@ public class HomeController {
 	}
 
 	@RequestMapping("/index.jsp")
-	public ModelAndView index_jsp()
+	public ModelAndView index_jsp(HttpServletRequest request)
 	{
 		ModelAndView mv = new ModelAndView("index");
-		StaticController.addGlobalObjects(mv);
+		StaticController.addGlobalObjects(mv, request);
 		mv.addObject("hello", "Hello World!");    	// model中增加一个名为hello的字符串
 
 		Client client = new Client();
@@ -69,13 +71,13 @@ public class HomeController {
 	}
 
 	@RequestMapping("/hello.html")
-	public ModelAndView hello()
+	public ModelAndView hello(HttpServletRequest request)
 	{
 		return new ModelAndView("helloForm");
 	}
 
 	@RequestMapping("/test.html")
-	public ModelAndView test()
+	public ModelAndView test(HttpServletRequest request)
 	{
 		return new ModelAndView("helloForm");
 	}
